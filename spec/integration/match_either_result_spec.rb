@@ -1,5 +1,3 @@
-require "kleisli"
-
 RSpec.describe "MatchEitherResult" do
   subject(:match) {
     MatchEitherResult(result) do |m|
