@@ -4,7 +4,7 @@ SimpleCov.start do
   add_filter "/spec/"
 end
 
-require "either_result_matcher"
+require "dry-result_matcher"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

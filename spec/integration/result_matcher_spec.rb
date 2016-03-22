@@ -1,7 +1,7 @@
-RSpec.describe "MatchEitherResult" do
+RSpec.describe Dry::ResultMatcher do
   describe "external matching" do
     subject(:match) {
-      MatchEitherResult(result) do |m|
+      Dry::ResultMatcher.match(result) do |m|
         m.success do |v|
           "Matched success: #{v}"
         end
@@ -32,7 +32,7 @@ RSpec.describe "MatchEitherResult" do
   describe "class enhancement" do
     let(:operation) {
       Class.new do
-        include EitherResultMatcher.for(:call)
+        include Dry::ResultMatcher.for(:call)
 
         def call(bool)
           bool ? Right("a success") : Left("a failure")

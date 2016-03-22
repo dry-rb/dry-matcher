@@ -1,3 +1,9 @@
+# 0.3.0 / 2016-03-23
+
+## Changed
+
+* Renamed to `dry-result_matcher`. Match results using `Dry::ResultMatcher.match` or extend your own classes with `Dry::ResultMatcher.for`.
+
 # 0.2.0 / 2016-02-10
 
 ## Added

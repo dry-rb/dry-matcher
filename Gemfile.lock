@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    either_result_matcher (0.2.0)
+    dry-result_matcher (0.3.0)
       kleisli
 
 GEM
@@ -51,7 +51,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.10)
-  either_result_matcher!
+  dry-result_matcher!
   rake (~> 10.4.2)
   rspec (~> 3.3.0)
   rubocop (~> 0.34.2)

@@ -1,16 +1,16 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "either_result_matcher/version"
+require "dry/result_matcher/version"
 
 Gem::Specification.new do |spec|
-  spec.name     = "either_result_matcher"
-  spec.version  = EitherResultMatcher::VERSION
+  spec.name     = "dry-result_matcher"
+  spec.version  = Dry::ResultMatcher::VERSION
   spec.authors  = ["Tim Riley"]
   spec.email    = ["tim@icelab.com.au"]
   spec.license  = "MIT"
 
   spec.summary  = "Expressive, all-in-one match API for Kleisli Either monads"
-  spec.homepage = "https://github.com/icelab/either_result_matcher"
+  spec.homepage = "https://github.com/dry-rb/dry-result_matcher"
 
   spec.files = Dir["README.md", "LICENSE.md", "Gemfile*", "Rakefile", "lib/**/*", "spec/**/*"]
   spec.require_paths = ["lib"]
