@@ -13,46 +13,9 @@
 
 An expressive, all-in-one API for operating on [Kleisli](https://github.com/txus/kleisli) `Either` results.
 
-## Usage
+## Links
 
-Operate an an `Either` object from the outside:
-
-```ruby
-result = Right("some result")
-
-Dry::ResultMatcher.match(result) do |m|
-  m.success do |v|
-    "Success: #{v}"
-  end
-
-  m.failure do |v|
-    "Failure: #{v}"
-  end
-end
-```
-
-Or extend your own `Either`-returning classes to support result match blocks:
-
-```ruby
-class MyOperation
-  include Dry::ResultMatcher.for(:call)
-
-  def call
-    Right("some result")
-  end
-end
-
-my_op = MyOperation.new
-my_op.call() do |m|
-  m.success do |v|
-    "Success: #{v}"
-  end
-
-  m.failure do |v|
-    "Failure: #{v}"
-  end
-end
-```
+* [Documentation](http://dry-rb.org/gems/dry-result_matcher)
 
 ## License
 

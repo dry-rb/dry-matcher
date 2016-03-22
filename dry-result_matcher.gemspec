@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.license  = "MIT"
 
   spec.summary  = "Expressive, all-in-one match API for Kleisli Either monads"
-  spec.homepage = "https://github.com/dry-rb/dry-result_matcher"
+  spec.homepage = "http://dry-rb.org/gems/dry-result_matcher"
 
   spec.files = Dir["README.md", "LICENSE.md", "Gemfile*", "Rakefile", "lib/**/*", "spec/**/*"]
   spec.require_paths = ["lib"]
