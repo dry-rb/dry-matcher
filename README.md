@@ -7,8 +7,9 @@
 # dry-result_matcher [![Join the Gitter chat](https://badges.gitter.im/Join%20Chat.svg)][gitter]
 
 [![Gem Version](https://img.shields.io/gem/v/dry-result_matcher.svg)][gem]
-[![Build Status](https://travis-ci.org/dry-rb/dry-result_matcher.svg?branch=master)][travis]
+[![Build Status](https://img.shields.io/travis/dry-rb/dry-result_matcher.svg)][travis]
 [![Code Climate](https://img.shields.io/codeclimate/github/dry-rb/dry-result_matcher.svg)][code_climate]
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/dry-rb/dry-result_matcher.svg)][code_climate]
 [![API Documentation Coverage](http://inch-ci.org/github/dry-rb/dry-result_matcher.svg)][inch]
 
 An expressive, all-in-one API for operating on [Kleisli](https://github.com/txus/kleisli) `Either` results.
