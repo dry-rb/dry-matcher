@@ -1,3 +1,6 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 require "simplecov"
 SimpleCov.minimum_coverage 100
 SimpleCov.start do
