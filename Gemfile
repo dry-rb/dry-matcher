@@ -3,8 +3,7 @@ source "https://rubygems.org"
 gemspec
 
 # TODO: remove once 'dry-monads' pushed to rubygems.org
-# run `rake install:local` from dry-monads
-gem "dry-monads", "0.0.1"
+gem "dry-monads", github: "dry-rb/dry-monads"
 
 group :test do
   gem "codeclimate-test-reporter", require: nil
