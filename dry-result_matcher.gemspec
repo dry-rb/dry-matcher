@@ -17,6 +17,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.1.0"
 
+  # TODO: add runtime dependency once 'dry-monads' pushed to rubygems.org
+  # spec.add_runtime_dependency "dry-monads"
   spec.add_runtime_dependency "kleisli"
 
   spec.add_development_dependency "bundler", "~> 1.10"

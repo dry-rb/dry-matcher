@@ -12,7 +12,8 @@
 [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/dry-rb/dry-result_matcher.svg)][code_climate]
 [![API Documentation Coverage](http://inch-ci.org/github/dry-rb/dry-result_matcher.svg)][inch]
 
-An expressive, all-in-one API for operating on [Kleisli](https://github.com/txus/kleisli) `Either` results.
+An expressive, all-in-one API for operating on [Dry-Monads](https://github.com/dry-rb/dry-monads) or
+[Kleisli](https://github.com/txus/kleisli) `Either` results.
 
 ## Links
 

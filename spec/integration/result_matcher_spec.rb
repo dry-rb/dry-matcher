@@ -1,4 +1,16 @@
 RSpec.describe Dry::ResultMatcher do
+  include Dry::Monads::Either::Mixin
+
+  describe 'Matcher RIGHT' do
+    subject { described_class::Matcher::RIGHT }
+    it { is_expected.to eq([Dry::Monads::Either::Right, Kleisli::Either::Right]) }
+  end
+
+  describe 'Matcher LEFT' do
+    subject { described_class::Matcher::LEFT }
+    it { is_expected.to eq([Dry::Monads::Either::Left, Kleisli::Either::Left]) }
+  end
+
   describe "external matching" do
     subject(:match) {
       Dry::ResultMatcher.match(result) do |m|
