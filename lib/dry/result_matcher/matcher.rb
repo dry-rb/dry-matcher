@@ -11,23 +11,13 @@ module Dry
       end
 
       def success(&block)
-        return output unless is_a_right?
+        return output unless result.right?
         @output = block.call(result.value)
       end
 
       def failure(&block)
-        return output unless is_a_left?
+        return output unless result.left?
         @output = block.call(result.value)
-      end
-
-    private
-
-      def is_a_right?
-        result.right?
-      end
-
-      def is_a_left?
-        result.left?
       end
     end
   end
