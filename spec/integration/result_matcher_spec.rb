@@ -1,16 +1,4 @@
 RSpec.describe Dry::ResultMatcher do
-  include Dry::Monads::Either::Mixin
-
-  describe 'Matcher RIGHT' do
-    subject { described_class::Matcher::RIGHT }
-    it { is_expected.to eq([Dry::Monads::Either::Right, Kleisli::Either::Right]) }
-  end
-
-  describe 'Matcher LEFT' do
-    subject { described_class::Matcher::LEFT }
-    it { is_expected.to eq([Dry::Monads::Either::Left, Kleisli::Either::Left]) }
-  end
-
   describe "external matching" do
     subject(:match) {
       Dry::ResultMatcher.match(result) do |m|
@@ -25,7 +13,7 @@ RSpec.describe Dry::ResultMatcher do
     }
 
     context "successful result" do
-      let(:result) { Right("a success") }
+      let(:result) { Dry::Monads::Right("a success") }
 
       it "matches on success" do
         expect(match).to eq "Matched success: a success"
@@ -33,7 +21,7 @@ RSpec.describe Dry::ResultMatcher do
     end
 
     context "failed result" do
-      let(:result) { Left("a failure") }
+      let(:result) { Dry::Monads::Left("a failure") }
 
       it "matches on failure" do
         expect(match).to eq "Matched failure: a failure"
@@ -47,7 +35,7 @@ RSpec.describe Dry::ResultMatcher do
         include Dry::ResultMatcher.for(:call)
 
         def call(bool)
-          bool ? Right("a success") : Left("a failure")
+          bool ? Dry::Monads::Right("a success") : Dry::Monads::Left("a failure")
         end
       end.new
     }
@@ -89,7 +77,7 @@ RSpec.describe Dry::ResultMatcher do
         let(:input) { true }
 
         it "returns the result" do
-          expect(result).to eq Right("a success")
+          expect(result).to eq Dry::Monads::Right("a success")
         end
       end
 
@@ -97,7 +85,7 @@ RSpec.describe Dry::ResultMatcher do
         let(:input) { false }
 
         it "returns the result" do
-          expect(result).to eq Left("a failure")
+          expect(result).to eq Dry::Monads::Left("a failure")
         end
       end
     end

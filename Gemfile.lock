@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     dry-result_matcher (0.3.0)
-      kleisli
+      dry-monads (~> 0.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -14,7 +14,6 @@ GEM
     docile (1.1.5)
     dry-monads (0.0.1)
     json (1.8.3)
-    kleisli (0.2.7)
     method_source (0.8.2)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -48,7 +47,6 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.10)
   codeclimate-test-reporter
-  dry-monads (= 0.0.1)
   dry-result_matcher!
   pry
   rake (~> 10.4.2)

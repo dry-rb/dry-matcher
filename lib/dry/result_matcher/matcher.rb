@@ -1,21 +1,10 @@
 require "dry-monads"
-require "kleisli"
 
 module Dry
   module ResultMatcher
     class Matcher
       attr_reader :result
       attr_reader :output
-
-      RIGHT = [
-        Dry::Monads::Either::Right,
-        Kleisli::Either::Right
-      ].freeze
-
-      LEFT = [
-        Dry::Monads::Either::Left,
-        Kleisli::Either::Left
-      ].freeze
 
       def initialize(result)
         @result = result
@@ -34,11 +23,11 @@ module Dry
     private
 
       def is_a_right?
-        RIGHT.include?(result.class)
+        result.right?
       end
 
       def is_a_left?
-        LEFT.include?(result.class)
+        result.left?
       end
     end
   end
