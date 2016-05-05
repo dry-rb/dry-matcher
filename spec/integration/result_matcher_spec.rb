@@ -68,6 +68,34 @@ RSpec.describe Dry::ResultMatcher do
           expect(match).to eq "Matched failure: a failure"
         end
       end
+
+      context "result responds to #to_either" do
+        let(:operation) {
+          Class.new do
+            include Dry::ResultMatcher.for(:call)
+
+            def call(bool)
+              Dry::Monads::Try.lift([StandardError], -> { (bool) ? 'a success' : raise('a failure') })
+            end
+          end.new
+        }
+
+        context "successful result" do
+          let(:input) { true }
+
+          it "matches on success" do
+            expect(match).to eq "Matched success: a success"
+          end
+        end
+
+        context "failed result" do
+          let(:input) { false }
+
+          it "matches on failure" do
+            expect(match).to eq "Matched failure: a failure"
+          end
+        end
+      end
     end
 
     describe "without match blocks" do

@@ -7,6 +7,7 @@ module Dry
       attr_reader :output
 
       def initialize(result)
+        result = result.to_either if result.respond_to?(:to_either)
         @result = result
       end
 
