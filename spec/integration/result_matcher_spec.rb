@@ -13,7 +13,7 @@ RSpec.describe Dry::ResultMatcher do
     }
 
     context "successful result" do
-      let(:result) { Right("a success") }
+      let(:result) { Dry::Monads::Right("a success") }
 
       it "matches on success" do
         expect(match).to eq "Matched success: a success"
@@ -21,7 +21,7 @@ RSpec.describe Dry::ResultMatcher do
     end
 
     context "failed result" do
-      let(:result) { Left("a failure") }
+      let(:result) { Dry::Monads::Left("a failure") }
 
       it "matches on failure" do
         expect(match).to eq "Matched failure: a failure"
@@ -35,7 +35,7 @@ RSpec.describe Dry::ResultMatcher do
         include Dry::ResultMatcher.for(:call)
 
         def call(bool)
-          bool ? Right("a success") : Left("a failure")
+          bool ? Dry::Monads::Right("a success") : Dry::Monads::Left("a failure")
         end
       end.new
     }
@@ -68,6 +68,34 @@ RSpec.describe Dry::ResultMatcher do
           expect(match).to eq "Matched failure: a failure"
         end
       end
+
+      context "result responds to #to_either" do
+        let(:operation) {
+          Class.new do
+            include Dry::ResultMatcher.for(:call)
+
+            def call(bool)
+              Dry::Monads::Try.lift([StandardError], -> { (bool) ? 'a success' : raise('a failure') })
+            end
+          end.new
+        }
+
+        context "successful result" do
+          let(:input) { true }
+
+          it "matches on success" do
+            expect(match).to eq "Matched success: a success"
+          end
+        end
+
+        context "failed result" do
+          let(:input) { false }
+
+          it "matches on failure" do
+            expect(match).to eq "Matched failure: a failure"
+          end
+        end
+      end
     end
 
     describe "without match blocks" do
@@ -77,7 +105,7 @@ RSpec.describe Dry::ResultMatcher do
         let(:input) { true }
 
         it "returns the result" do
-          expect(result).to eq Right("a success")
+          expect(result).to eq Dry::Monads::Right("a success")
         end
       end
 
@@ -85,7 +113,7 @@ RSpec.describe Dry::ResultMatcher do
         let(:input) { false }
 
         it "returns the result" do
-          expect(result).to eq Left("a failure")
+          expect(result).to eq Dry::Monads::Left("a failure")
         end
       end
     end
