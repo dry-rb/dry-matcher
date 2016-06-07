@@ -1,3 +1,15 @@
+# 0.4.0 / 2016-06-08
+
+## Added
+
+* Support convertible result objects responding to `#to_either` (ttdonovan)
+
+## Changed
+
+* Expect monads from [dry-monads](https://github.com/dry-rb/dry-monads) instead of [Kleisli](https://github.com/txus/kleisli) (ttdonovan)
+
+[Compare v0.3.0...v0.4.0](https://github.com/dry-rb/dry-result_matcher/compare/v0.3.0...v0.4.0)
+
 # 0.3.0 / 2016-03-23
 
 ## Changed
