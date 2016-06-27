@@ -34,7 +34,7 @@ RSpec.describe Dry::ResultMatcher do
   describe "class enhancement" do
     let(:operation) {
       Class.new do
-        include Dry::ResultMatcher.match(:call, with: Dry::ResultMatcher::EitherMatcher)
+        include Dry::ResultMatcher.for(:call, with: Dry::ResultMatcher::EitherMatcher)
 
         def call(bool)
           bool ? Dry::Monads::Right("a success") : Dry::Monads::Left("a failure")
@@ -74,7 +74,7 @@ RSpec.describe Dry::ResultMatcher do
       context "result responds to #to_either" do
         let(:operation) {
           Class.new do
-            include Dry::ResultMatcher.match(:call, with: Dry::ResultMatcher::EitherMatcher)
+            include Dry::ResultMatcher.for(:call, with: Dry::ResultMatcher::EitherMatcher)
 
             def call(bool)
               Dry::Monads::Try.lift([StandardError], -> { (bool) ? 'a success' : raise('a failure') })

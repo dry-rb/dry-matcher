@@ -3,7 +3,7 @@ require "dry/result_matcher/either_matcher"
 
 module Dry
   module ResultMatcher
-    def self.match(*match_methods, with:)
+    def self.for(*match_methods, with:)
       matcher = with
 
       matchers_mod = Module.new do
