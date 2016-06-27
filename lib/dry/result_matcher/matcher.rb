@@ -1,4 +1,4 @@
-require "dry/result_matcher/evaluation"
+require "dry/result_matcher/evaluator"
 
 module Dry
   module ResultMatcher
@@ -10,7 +10,7 @@ module Dry
       end
 
       def call(result, &block)
-        Evaluation.new(result, cases).call(&block)
+        Evaluator.new(result, cases).call(&block)
       end
     end
   end

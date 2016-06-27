@@ -1,6 +1,6 @@
 module Dry
   module ResultMatcher
-    class Evaluation
+    class Evaluator
       attr_reader :result
       attr_reader :output
 
@@ -26,12 +26,9 @@ module Dry
       def handle_case(kase, pattern, &block)
         return(output) if matched?
 
-        if kase.match?(pattern, result)
+        if kase.matches?(pattern, result)
           @matched = true
-
-          value = kase.resolve(result)
-          @output = block.call(value)
-          @output
+          @output = block.call(kase.resolve(result))
         end
       end
 
