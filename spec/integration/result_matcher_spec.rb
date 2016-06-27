@@ -1,7 +1,9 @@
+require "dry-monads"
+
 RSpec.describe Dry::ResultMatcher do
   describe "external matching" do
     subject(:match) {
-      Dry::ResultMatcher.match(result) do |m|
+      Dry::ResultMatcher::EitherMatcher.(result) do |m|
         m.success do |v|
           "Matched success: #{v}"
         end
@@ -32,7 +34,7 @@ RSpec.describe Dry::ResultMatcher do
   describe "class enhancement" do
     let(:operation) {
       Class.new do
-        include Dry::ResultMatcher.for(:call)
+        include Dry::ResultMatcher.match(:call, with: Dry::ResultMatcher::EitherMatcher)
 
         def call(bool)
           bool ? Dry::Monads::Right("a success") : Dry::Monads::Left("a failure")
@@ -72,7 +74,7 @@ RSpec.describe Dry::ResultMatcher do
       context "result responds to #to_either" do
         let(:operation) {
           Class.new do
-            include Dry::ResultMatcher.for(:call)
+            include Dry::ResultMatcher.match(:call, with: Dry::ResultMatcher::EitherMatcher)
 
             def call(bool)
               Dry::Monads::Try.lift([StandardError], -> { (bool) ? 'a success' : raise('a failure') })

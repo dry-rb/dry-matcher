@@ -8,6 +8,8 @@ if RUBY_ENGINE == "ruby"
   end
 end
 
+require "byebug"
+
 require "dry-result_matcher"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

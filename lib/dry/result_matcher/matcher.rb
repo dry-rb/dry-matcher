@@ -1,24 +1,16 @@
-require "dry-monads"
+require "dry/result_matcher/evaluation"
 
 module Dry
   module ResultMatcher
     class Matcher
-      attr_reader :result
-      attr_reader :output
+      attr_reader :cases
 
-      def initialize(result)
-        result = result.to_either if result.respond_to?(:to_either)
-        @result = result
+      def initialize(cases = {})
+        @cases = cases
       end
 
-      def success(&block)
-        return output unless result.right?
-        @output = block.call(result.value)
-      end
-
-      def failure(&block)
-        return output unless result.left?
-        @output = block.call(result.value)
+      def call(result, &block)
+        Evaluation.new(result, cases).call(&block)
       end
     end
   end
