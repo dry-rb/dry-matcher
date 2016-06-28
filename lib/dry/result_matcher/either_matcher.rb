@@ -4,7 +4,7 @@ module Dry
   module ResultMatcher
     EitherMatcher = Dry::ResultMatcher::Matcher.new(
       success: Case.new(
-        match: -> pattern, result {
+        match: -> result, *pattern {
           result = result.to_either if result.respond_to?(:to_either)
           result.right?
         },
@@ -14,7 +14,7 @@ module Dry
         },
       ),
       failure: Case.new(
-        match: -> pattern, result {
+        match: -> result, *pattern {
           result = result.to_either if result.respond_to?(:to_either)
           result.left?
         },

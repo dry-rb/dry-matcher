@@ -6,8 +6,8 @@ module Dry
         @resolve = resolve
       end
 
-      def matches?(pattern, value)
-        @match.(pattern, value)
+      def matches?(value, *pattern)
+        @match.(value, *pattern)
       end
 
       def resolve(value)

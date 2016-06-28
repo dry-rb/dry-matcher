@@ -6,14 +6,14 @@ RSpec.describe Dry::ResultMatcher::Matcher do
   context "with match cases provided" do
     let(:success_case) {
       Dry::ResultMatcher::Case.new(
-        match: -> pattern, result { result.right? },
+        match: -> result { result.right? },
         resolve: -> result { result.value },
       )
     }
 
     let(:failure_case) {
       Dry::ResultMatcher::Case.new(
-        match: -> pattern, result { result.left? },
+        match: -> result { result.left? },
         resolve: -> result { result.value },
       )
     }
@@ -50,8 +50,8 @@ RSpec.describe Dry::ResultMatcher::Matcher do
     context "with patterns" do
       let(:failure_case) {
         Dry::ResultMatcher::Case.new(
-          match: -> pattern, result {
-            result.length == 3 && result[0] == :failure && result[1] == pattern
+          match: -> result, failure_type {
+            result.length == 3 && result[0] == :failure && result[1] == failure_type
           },
           resolve: -> result { result.last },
         )

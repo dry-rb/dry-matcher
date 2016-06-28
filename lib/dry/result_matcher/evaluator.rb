@@ -25,10 +25,10 @@ module Dry
 
       private
 
-      def handle_case(kase, pattern = nil, &block)
+      def handle_case(kase, *pattern, &block)
         return @output if @matched
 
-        if kase.matches?(pattern, @result)
+        if kase.matches?(@result, *pattern)
           @matched = true
           @output = block.call(kase.resolve(@result))
         end
