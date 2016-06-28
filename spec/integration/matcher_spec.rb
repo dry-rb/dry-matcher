@@ -46,5 +46,34 @@ RSpec.describe Dry::ResultMatcher::Matcher do
       input = Dry::Monads::Left("No!")
       expect(call_match(input)).to eq "Failure: No!"
     end
+
+    context "with patterns" do
+      let(:failure_case) {
+        Dry::ResultMatcher::Case.new(
+          match: -> pattern, result {
+            result.length == 3 && result[0] == :failure && result[1] == pattern
+          },
+          resolve: -> result { result.last },
+        )
+      }
+
+      def call_match(input)
+        matcher.(input) do |m|
+          m.failure :my_error do |v|
+            "Pattern-matched failure: #{v}"
+          end
+        end
+      end
+
+      it "matches using the provided pattern" do
+        input = [:failure, :my_error, "No!"]
+        expect(call_match(input)).to eq "Pattern-matched failure: No!"
+      end
+
+      it "doesn't match if the pattern doesn't match" do
+        input = [:failure, :non_matching_error, "No!"]
+        expect(call_match(input)).to be_nil
+      end
+    end
   end
 end
