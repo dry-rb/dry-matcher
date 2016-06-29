@@ -4,7 +4,7 @@ gemspec
 
 group :test do
   gem "codeclimate-test-reporter", "~> 0.5.0"
-  gem "dry-monads"
+  gem "dry-monads", "~> 0.0.2"
 end
 
 group :tools do
