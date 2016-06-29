@@ -1,19 +1,18 @@
 require "dry/result_matcher/matcher"
+require "dry/result_matcher/case"
 
 module Dry
   module ResultMatcher
-    def self.match(result, &block)
-      block.call(Matcher.new(result))
-    end
+    def self.for(*match_methods, with:)
+      matcher = with
 
-    def self.for(*match_methods)
       matchers_mod = Module.new do
         match_methods.each do |match_method|
           define_method(match_method) do |*args, &block|
             result = super(*args)
 
             if block
-              Dry::ResultMatcher.match(result, &block)
+              matcher.(result, &block)
             else
               result
             end
