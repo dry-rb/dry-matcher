@@ -8,8 +8,8 @@ module Dry
         @output = nil
       end
 
-      def call(&block)
-        block.call(self)
+      def call
+        yield self
         @output
       end
 
@@ -25,12 +25,12 @@ module Dry
 
       private
 
-      def handle_case(kase, *pattern, &block)
+      def handle_case(kase, *pattern)
         return @output if @matched
 
         if kase.matches?(@result, *pattern)
           @matched = true
-          @output = block.call(kase.resolve(@result))
+          @output = yield(kase.resolve(@result))
         end
       end
     end
