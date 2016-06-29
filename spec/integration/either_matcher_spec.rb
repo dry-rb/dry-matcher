@@ -1,10 +1,10 @@
 require "dry-monads"
-require "dry/result_matcher/either_matcher"
+require "dry/matcher/either_matcher"
 
-RSpec.describe "Dry::ResultMatcher::EitherMatcher" do
+RSpec.describe "Dry::Matcher::EitherMatcher" do
   describe "external matching" do
     subject(:match) {
-      Dry::ResultMatcher::EitherMatcher.(result) do |m|
+      Dry::Matcher::EitherMatcher.(result) do |m|
         m.success do |v|
           "Matched success: #{v}"
         end

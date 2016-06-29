@@ -1,5 +1,5 @@
 module Dry
-  module ResultMatcher
+  class Matcher
     class Evaluator < BasicObject
       def initialize(result, cases)
         @cases = cases

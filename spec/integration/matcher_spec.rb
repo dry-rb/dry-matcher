@@ -1,25 +1,23 @@
 require "dry-monads"
-require "dry/result_matcher/case"
-require "dry/result_matcher/matcher"
 
-RSpec.describe Dry::ResultMatcher::Matcher do
+RSpec.describe Dry::Matcher do
   context "with match cases provided" do
     let(:success_case) {
-      Dry::ResultMatcher::Case.new(
+      Dry::Matcher::Case.new(
         match: -> result { result.right? },
         resolve: -> result { result.value },
       )
     }
 
     let(:failure_case) {
-      Dry::ResultMatcher::Case.new(
+      Dry::Matcher::Case.new(
         match: -> result { result.left? },
         resolve: -> result { result.value },
       )
     }
 
     let(:matcher) {
-      Dry::ResultMatcher::Matcher.new(
+      Dry::Matcher.new(
         success: success_case,
         failure: failure_case,
       )
@@ -49,7 +47,7 @@ RSpec.describe Dry::ResultMatcher::Matcher do
 
     context "with patterns" do
       let(:failure_case) {
-        Dry::ResultMatcher::Case.new(
+        Dry::Matcher::Case.new(
           match: -> result, failure_type {
             result.length == 3 && result[0] == :failure && result[1] == failure_type
           },

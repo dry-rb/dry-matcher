@@ -1,8 +1,8 @@
-require "dry/result_matcher/case"
+require "dry/matcher/case"
 
 module Dry
-  module ResultMatcher
-    EitherMatcher = Dry::ResultMatcher::Matcher.new(
+  class Matcher
+    EitherMatcher = Dry::Matcher.new(
       success: Case.new(
         match: -> result, *pattern {
           result = result.to_either

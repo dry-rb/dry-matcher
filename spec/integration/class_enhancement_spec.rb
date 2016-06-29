@@ -1,10 +1,10 @@
 require "dry-monads"
-require "dry/result_matcher/either_matcher"
+require "dry/matcher/either_matcher"
 
-RSpec.describe "Class enhancement with Dry::ResultMatcher.for" do
+RSpec.describe "Class enhancement with Dry::Matcher.for" do
   let(:operation) {
     Class.new do
-      include Dry::ResultMatcher.for(:call, with: Dry::ResultMatcher::EitherMatcher)
+      include Dry::Matcher.for(:call, with: Dry::Matcher::EitherMatcher)
 
       def call(bool)
         bool ? Dry::Monads::Right("a success") : Dry::Monads::Left("a failure")

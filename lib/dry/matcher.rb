@@ -1,8 +1,8 @@
-require "dry/result_matcher/matcher"
-require "dry/result_matcher/case"
+require "dry/matcher/case"
+require "dry/matcher/evaluator"
 
 module Dry
-  module ResultMatcher
+  class Matcher
     def self.for(*match_methods, with:)
       matcher = with
 
@@ -27,6 +27,16 @@ module Dry
           klass.prepend const_get(:Matchers)
         end
       end
+    end
+
+    attr_reader :cases
+
+    def initialize(cases = {})
+      @cases = cases
+    end
+
+    def call(result, &block)
+      Evaluator.new(result, cases).call(&block)
     end
   end
 end

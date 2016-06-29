@@ -11,7 +11,7 @@ begin
   require "byebug"
 rescue LoadError; end
 
-require "dry-result_matcher"
+require "dry-matcher"
 
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each do |f| require f end
 

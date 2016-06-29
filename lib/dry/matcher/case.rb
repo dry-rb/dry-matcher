@@ -1,5 +1,5 @@
 module Dry
-  module ResultMatcher
+  class Matcher
     class Case
       def initialize(match:, resolve:)
         @match = match
