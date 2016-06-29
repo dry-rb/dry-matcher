@@ -1,5 +1,5 @@
 require "dry/result_matcher/matcher"
-require "dry/result_matcher/either_matcher"
+require "dry/result_matcher/case"
 
 module Dry
   module ResultMatcher
