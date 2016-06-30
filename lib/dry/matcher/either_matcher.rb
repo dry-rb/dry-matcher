@@ -1,4 +1,4 @@
-require "dry/matcher/case"
+require "dry/matcher"
 
 module Dry
   class Matcher
