@@ -1,3 +1,9 @@
+# 0.5.1 / 2016-07-06
+
+## Fixed
+
+- Fixed handling of calls to non-existent cases within a matcher block (timriley)
+
 # 0.5.0 / 2016-06-30
 
 ## Added
