@@ -14,7 +14,7 @@ module Dry
       end
 
       def respond_to_missing?(name, include_private = false)
-        @cases.key?(name) || super
+        @cases.key?(name)
       end
 
       def method_missing(name, *args, &block)
