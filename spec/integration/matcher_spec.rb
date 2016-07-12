@@ -74,7 +74,7 @@ RSpec.describe Dry::Matcher do
 
       def call_match(input)
         matcher.(input) do |m|
-          m.success { }
+          m.success
 
           m.failure :my_error do |v|
             "Pattern-matched failure: #{v}"
