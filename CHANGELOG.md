@@ -1,8 +1,23 @@
+# 0.6.0 / 2016-12-19
+
+## Added
+
+- API documentation for most methods (alsemyonov in [#8](https://github.com/dry-rb/dry-matcher/pull/8))
+
+## Changed
+
+- Matches must now be exhaustive - when matching against a value, at least one match block must be provided for each of a matcher's cases (timriley in [#7](https://github.com/dry-rb/dry-matcher/pull/7))
+- `Dry::Matcher::Case` objects can now be created without a `resolve:` proc. In this case, a default will be provided that passes the result value through (timriley in [#9](https://github.com/dry-rb/dry-matcher/pull/9))
+
+[Compare v0.5.1...v0.6.0](https://github.com/dry-rb/dry-result_matcher/compare/v0.5.1...v0.6.0)
+
 # 0.5.1 / 2016-07-06
 
 ## Fixed
 
 - Fixed handling of calls to non-existent cases within a matcher block (timriley)
+
+[Compare v0.5.0...v0.5.1](https://github.com/dry-rb/dry-result_matcher/compare/v0.5.0...v0.5.1)
 
 # 0.5.0 / 2016-06-30
 
@@ -64,6 +79,8 @@
     end
     ```
 - The previous `Dry::ResultMatcher.match` behaviour (for matching `Either` monads) has been moved to `Dry::Matcher::EitherMatcher.call`
+
+[Compare v0.4.0...v0.5.0](https://github.com/dry-rb/dry-result_matcher/compare/v0.4.0...v0.5.0)
 
 # 0.4.0 / 2016-06-08
 
