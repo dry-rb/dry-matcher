@@ -1,11 +1,8 @@
-if RUBY_ENGINE == "ruby"
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.start
-
-  SimpleCov.start do
-    add_filter "/spec/"
-  end
+if RUBY_ENGINE == "ruby" && RUBY_VERSION >= "2.3"
+  require "simplecov"
+  SimpleCov.start
 end
+
 
 begin
   require "byebug"

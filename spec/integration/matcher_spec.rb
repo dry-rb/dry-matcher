@@ -45,7 +45,24 @@ RSpec.describe Dry::Matcher do
       expect(call_match(input)).to eq "Failure: No!"
     end
 
+    it "requires an exhaustive match" do
+      input = Dry::Monads::Right("Yes!")
+
+      expect {
+        matcher.(input) do |m|
+          m.success { |v| "Success: #{v}" }
+        end
+      }.to raise_error Dry::Matcher::NonExhaustiveMatchError
+    end
+
     context "with patterns" do
+      let(:success_case) {
+        Dry::Matcher::Case.new(
+          match: -> result { result.first == :ok },
+          resolve: -> result { result.last },
+        )
+      }
+
       let(:failure_case) {
         Dry::Matcher::Case.new(
           match: -> result, failure_type {
@@ -57,6 +74,8 @@ RSpec.describe Dry::Matcher do
 
       def call_match(input)
         matcher.(input) do |m|
+          m.success
+
           m.failure :my_error do |v|
             "Pattern-matched failure: #{v}"
           end
