@@ -15,7 +15,6 @@ module Dry
         @output = nil
       end
 
-      # @yieldparam [Evaluator] m 
       def call
         yield self
 

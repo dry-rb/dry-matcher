@@ -5,14 +5,14 @@ module Dry
     class Case
       DEFAULT_RESOLVE = -> result { result }
 
-      # @param [#call] match callable used to test given pattern
-      # @param [#call] resolve callable used to resolve real value from pattern
+      # @param match [#call] callable used to test given pattern against value
+      # @param resolve [#call] callable used to resolve value into a result
       def initialize(match:, resolve: DEFAULT_RESOLVE)
         @match = match
         @resolve = resolve
       end
 
-      # Tests whether `value` (with optional `pattern`) matches pattern using
+      # Tests whether `value` (with optional `*pattern`) matches pattern using
       # callable given to {#initialize} as `match:` argument
       #
       # @param [Object] value
