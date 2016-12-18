@@ -3,9 +3,11 @@ module Dry
     # {Case} object contains logic for pattern matching and resolving result
     # from matched pattern
     class Case
+      DEFAULT_RESOLVE = -> result { result }
+
       # @param [#call] match callable used to test given pattern
       # @param [#call] resolve callable used to resolve real value from pattern
-      def initialize(match:, resolve:)
+      def initialize(match:, resolve: DEFAULT_RESOLVE)
         @match = match
         @resolve = resolve
       end
