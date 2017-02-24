@@ -56,48 +56,61 @@ RSpec.describe Dry::Matcher do
     end
 
     context "with wildcard handler" do
+      let(:less_case) {
+        Dry::Matcher::Case.new(match: -> result { result < 0 })
+      }
+
+      let(:zero_case) {
+        Dry::Matcher::Case.new(match: -> result { result == 0 })
+      }
+
       let(:one_case) {
         Dry::Matcher::Case.new(match: -> result { result == 1 })
       }
 
-      let(:two_case) {
-        Dry::Matcher::Case.new(match: -> result { result == 2 })
-      }
-
-      let(:three_case) {
-        Dry::Matcher::Case.new(match: -> result { result == 3 })
+      let(:greater_case) {
+        Dry::Matcher::Case.new(match: -> result { result > 1 })
       }
 
       let(:matcher) {
         Dry::Matcher.new(
+          less: less_case,
+          zero: zero_case,
           one: one_case,
-          two: two_case,
-          three: three_case,
+          greater: greater_case
         )
       }
 
       def call_match(input)
         matcher.(input) do |m|
-          m.one do |v|
-            "One: #{1}"
+          m.less do |v|
+            "Less: #{v}"
           end
 
           m.else do |v|
-            "Two or Three: #{v}"
+            "Zero or One: #{v}"
+          end
+
+          m.greater do |v|
+            "Greater: #{v}"
           end
         end
       end
 
-      it "matches on one" do
-        expect(call_match(1)).to eq "One: 1"
+      it "matches on -1" do
+        expect(call_match(-1)).to eq "Less: -1"
       end
 
-      it "matches on two" do
-        expect(call_match(2)).to eq "Two or Three: 2"
+      it "matches on 0" do
+        expect(call_match(0)).to eq "Zero or One: 0"
       end
 
-      it "matches on three" do
-        expect(call_match(3)).to eq "Two or Three: 3"
+      it "matches on 1" do
+        expect(call_match(1)).to eq "Zero or One: 1"
+      end
+
+      it "matches on 2" do
+        expect(call_match(2)).to eq "Greater: 2"
       end
     end
 
