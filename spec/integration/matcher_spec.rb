@@ -55,6 +55,52 @@ RSpec.describe Dry::Matcher do
       }.to raise_error Dry::Matcher::NonExhaustiveMatchError
     end
 
+    context "with wildcard handler" do
+      let(:one_case) {
+        Dry::Matcher::Case.new(match: -> result { result == 1 })
+      }
+
+      let(:two_case) {
+        Dry::Matcher::Case.new(match: -> result { result == 2 })
+      }
+
+      let(:three_case) {
+        Dry::Matcher::Case.new(match: -> result { result == 3 })
+      }
+
+      let(:matcher) {
+        Dry::Matcher.new(
+          one: one_case,
+          two: two_case,
+          three: three_case,
+        )
+      }
+
+      def call_match(input)
+        matcher.(input) do |m|
+          m.one do |v|
+            "One: #{1}"
+          end
+
+          m.else do |v|
+            "Two or Three: #{v}"
+          end
+        end
+      end
+
+      it "matches on one" do
+        expect(call_match(1)).to eq "One: 1"
+      end
+
+      it "matches on two" do
+        expect(call_match(2)).to eq "Two or Three: 2"
+      end
+
+      it "matches on three" do
+        expect(call_match(3)).to eq "Two or Three: 3"
+      end
+    end
+
     context "with patterns" do
       let(:success_case) {
         Dry::Matcher::Case.new(

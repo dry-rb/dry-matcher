@@ -23,6 +23,11 @@ module Dry
         @output
       end
 
+      def else(*args, &block)
+        @unhandled_cases.each { |name| handle_case(@cases[name], *args, &block) }
+        @unhandled_cases.clear
+      end
+
       # Checks whether `cases` given to {#initialize} contains one called `name`
       # @param [String] name
       # @param [Boolean] include_private
