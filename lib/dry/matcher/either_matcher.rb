@@ -56,7 +56,7 @@ module Dry
         },
         resolve: -> result {
           result = result.to_either
-          result.value
+          result.value!
         },
       ),
       failure: Case.new(
@@ -66,7 +66,7 @@ module Dry
         },
         resolve: -> result {
           result = result.to_either
-          result.value
+          result.left
         },
       )
     )

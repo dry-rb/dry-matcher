@@ -5,14 +5,14 @@ RSpec.describe Dry::Matcher do
     let(:success_case) {
       Dry::Matcher::Case.new(
         match: -> result { result.right? },
-        resolve: -> result { result.value },
+        resolve: -> result { result.value! },
       )
     }
 
     let(:failure_case) {
       Dry::Matcher::Case.new(
         match: -> result { result.left? },
-        resolve: -> result { result.value },
+        resolve: -> result { result.left },
       )
     }
 
