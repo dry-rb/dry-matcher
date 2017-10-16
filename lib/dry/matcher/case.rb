@@ -27,9 +27,15 @@ module Dry
       # as `resolve:` argument
       #
       # @param [Object] value
+      # @param [<Object>] pattern optional pattern given after the `value` to
+      #   `resolve:` callable
       # @return [Object] result resolved from given `value`
-      def resolve(value)
-        @resolve.(value)
+      def resolve(value, *pattern)
+        if @resolve.arity == 1
+          @resolve.(value)
+        else
+          @resolve.(value, *pattern)
+        end
       end
     end
   end

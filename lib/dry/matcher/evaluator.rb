@@ -67,7 +67,7 @@ module Dry
 
         if kase.matches?(@result, *pattern)
           @matched = true
-          @output = yield(kase.resolve(@result))
+          @output = yield(kase.resolve(@result, *pattern))
         end
       end
     end
