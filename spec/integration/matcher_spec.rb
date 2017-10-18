@@ -92,5 +92,38 @@ RSpec.describe Dry::Matcher do
         expect(call_match(input)).to be_nil
       end
     end
+
+    context "with patterns (for resolver)" do
+      let(:success_case) {
+        Dry::Matcher::Case.new(
+          match: -> result, pattern { result.fetch(pattern, []).first == :success }
+        )
+      }
+
+      let(:failure_case) {
+        Dry::Matcher::Case.new(
+          match: -> result, pattern { result.fetch(pattern, []).first == :failure },
+          resolve: -> result, pattern { result[pattern].last }
+        )
+      }
+
+      def call_match(input)
+        matcher.(input) do |m|
+          m.success(:validation) { |result| result }
+
+          m.failure(:validation) { |errors| errors }
+        end
+      end
+
+      it "doesn't pass the provided pattern to unary resolvers" do
+        input = { validation: [:success] }
+        expect(call_match(input)).to eq(input)
+      end
+
+      it "resolves matched value using the provided pattern" do
+        input = { validation: [:failure, "Invalid credentials"] }
+        expect(call_match(input)).to eq "Invalid credentials"
+      end
+    end
   end
 end
