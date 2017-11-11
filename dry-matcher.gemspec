@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.files          = Dir["README.md", "LICENSE.md", "CHANGELOG.md", "Gemfile", "Rakefile", "lib/**/*", "spec/**/*"]
   spec.require_paths  = ["lib"]
 
-  spec.required_ruby_version = ">= 2.1.0"
+  spec.required_ruby_version = ">= 2.2.0"
 
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.4.2"
