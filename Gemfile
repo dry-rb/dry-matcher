@@ -5,7 +5,7 @@ gemspec
 group :test do
   gem "simplecov"
   gem "codeclimate-test-reporter"
-  gem "dry-monads", git: "https://github.com/dry-rb/dry-monads.git"
+  gem "dry-monads", '>= 0.4.0'
 end
 
 group :tools do

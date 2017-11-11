@@ -13,10 +13,10 @@ module Dry
     #
     # @example Usage with `dry-monads`
     #   class MonadicOperation
-    #     include Dry::Matcher.for(:call, with: Dry::Matcher::EitherMatcher)
+    #     include Dry::Matcher.for(:call, with: Dry::Matcher::ResultMatcher)
     #
     #     def call
-    #       Dry::Monads::Either::Right.new('Success')
+    #       Dry::Monads::Result::Success.new('Success')
     #     end
     #   end
     #
@@ -71,11 +71,11 @@ module Dry
     #
     # @example Usage with `dry-monads`
     #   require 'dry-monads'
-    #   require 'dry/matcher/either_matcher'
+    #   require 'dry/matcher/result_matcher'
     #
-    #   value = Dry::Monads::Either::Left.new('failure!')
+    #   value = Dry::Monads::Result::Failure.new('failure!')
     #
-    #   Dry::Matcher::EitherMatcher.(value) do |m|
+    #   Dry::Matcher::ResultMatcher.(value) do |m|
     #     m.success { |v| "Yay: #{v}" }
     #     m.failure { |v| "Boo: #{v}" }
     #   end #=> "Boo: failure!"

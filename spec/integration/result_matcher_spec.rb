@@ -1,10 +1,10 @@
 require "dry-monads"
-require "dry/matcher/either_matcher"
+require "dry/matcher/result_matcher"
 
-RSpec.describe "Dry::Matcher::EitherMatcher" do
+RSpec.describe "Dry::Matcher::ResultMatcher" do
   describe "external matching" do
     subject(:match) {
-      Dry::Matcher::EitherMatcher.(result) do |m|
+      Dry::Matcher::ResultMatcher.(result) do |m|
         m.success do |v|
           "Matched success: #{v}"
         end
@@ -16,7 +16,7 @@ RSpec.describe "Dry::Matcher::EitherMatcher" do
     }
 
     context "successful result" do
-      let(:result) { Dry::Monads::Right("a success") }
+      let(:result) { Dry::Monads::Success("a success") }
 
       it "matches on success" do
         expect(match).to eq "Matched success: a success"
@@ -24,14 +24,14 @@ RSpec.describe "Dry::Matcher::EitherMatcher" do
     end
 
     context "failed result" do
-      let(:result) { Dry::Monads::Left("a failure") }
+      let(:result) { Dry::Monads::Failure("a failure") }
 
       it "matches on failure" do
         expect(match).to eq "Matched failure: a failure"
       end
     end
 
-    context "result convertible to either" do
+    context "result convertible to result" do
       context "converts to success" do
         let(:result) {
           Dry::Monads::Try.lift([StandardError], -> { 'a success' })
