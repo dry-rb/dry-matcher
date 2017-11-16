@@ -4,7 +4,7 @@
 
 - `EitherMatcher` was renamed to `ResultMatcher` according to the changes in `dry-monads`. The previous name is still there for backward compatibility, we'll deprecate and drop it in furure releases (flash-gordon in [#13](https://github.com/dry-rb/dry-matcher/pull/13)
 
-[Compare v0.6.0...master](https://github.com/dry-rb/dry-result_matcher/compare/v0.6.0...master)
+[Compare v0.6.0...master](https://github.com/dry-rb/dry-matcher/compare/v0.6.0...master)
 
 # 0.6.0 / 2016-12-19
 
@@ -21,7 +21,7 @@
 
 - Fixed handling of calls to non-existent cases within a matcher block (timriley)
 
-[Compare v0.5.0...v0.6.0](https://github.com/dry-rb/dry-result_matcher/compare/v0.5.0...v0.6.0)
+[Compare v0.5.0...v0.6.0](https://github.com/dry-rb/dry-matcher/compare/v0.5.0...v0.6.0)
 
 # 0.5.0 / 2016-06-30
 
@@ -84,7 +84,7 @@
     ```
 - The previous `Dry::ResultMatcher.match` behaviour (for matching `Either` monads) has been moved to `Dry::Matcher::EitherMatcher.call`
 
-[Compare v0.4.0...v0.5.0](https://github.com/dry-rb/dry-result_matcher/compare/v0.4.0...v0.5.0)
+[Compare v0.4.0...v0.5.0](https://github.com/dry-rb/dry-matcher/compare/v0.4.0...v0.5.0)
 
 # 0.4.0 / 2016-06-08
 
@@ -96,7 +96,7 @@
 
 * Expect monads from [dry-monads](https://github.com/dry-rb/dry-monads) instead of [Kleisli](https://github.com/txus/kleisli) (ttdonovan)
 
-[Compare v0.3.0...v0.4.0](https://github.com/dry-rb/dry-result_matcher/compare/v0.3.0...v0.4.0)
+[Compare v0.3.0...v0.4.0](https://github.com/dry-rb/dry-matcher/compare/v0.3.0...v0.4.0)
 
 # 0.3.0 / 2016-03-23
 
@@ -104,7 +104,7 @@
 
 * Renamed to `dry-result_matcher`. Match results using `Dry::ResultMatcher.match` or extend your own classes with `Dry::ResultMatcher.for`.
 
-[Compare v0.2.0...v0.3.0](https://github.com/dry-rb/dry-result_matcher/compare/v0.2.0...v0.3.0)
+[Compare v0.2.0...v0.3.0](https://github.com/dry-rb/dry-matcher/compare/v0.2.0...v0.3.0)
 
 # 0.2.0 / 2016-02-10
 
@@ -112,7 +112,7 @@
 
 * Added `EitherResultMatcher.for(*methods)` to return a module wrapping the specified methods (returning an `Either`) with the match block API. Example usage, in a class with a `#call` method: `include EitherResultMatcher.for(:call)`.
 
-[Compare v0.1.0...v0.22.0](https://github.com/dry-rb/dry-result_matcher/compare/v0.1.0...v0.2.0)
+[Compare v0.1.0...v0.22.0](https://github.com/dry-rb/dry-matcher/compare/v0.1.0...v0.2.0)
 
 # 0.1.0 / 2015-12-03
 
