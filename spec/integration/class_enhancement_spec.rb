@@ -1,13 +1,13 @@
 require "dry-monads"
-require "dry/matcher/either_matcher"
+require "dry/matcher/result_matcher"
 
 RSpec.describe "Class enhancement with Dry::Matcher.for" do
   let(:operation) {
     Class.new do
-      include Dry::Matcher.for(:call, with: Dry::Matcher::EitherMatcher)
+      include Dry::Matcher.for(:call, with: Dry::Matcher::ResultMatcher)
 
       def call(bool)
-        bool ? Dry::Monads::Right("a success") : Dry::Monads::Left("a failure")
+        bool ? Dry::Monads::Success("a success") : Dry::Monads::Failure("a failure")
       end
     end.new
   }
@@ -49,7 +49,7 @@ RSpec.describe "Class enhancement with Dry::Matcher.for" do
       let(:input) { true }
 
       it "returns the result" do
-        expect(result).to eq Dry::Monads::Right("a success")
+        expect(result).to eq Dry::Monads::Success("a success")
       end
     end
 
@@ -57,7 +57,7 @@ RSpec.describe "Class enhancement with Dry::Matcher.for" do
       let(:input) { false }
 
       it "returns the result" do
-        expect(result).to eq Dry::Monads::Left("a failure")
+        expect(result).to eq Dry::Monads::Failure("a failure")
       end
     end
   end

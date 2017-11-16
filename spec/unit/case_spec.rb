@@ -9,7 +9,7 @@ RSpec.describe Dry::Matcher::Case do
 
   describe "#resolve" do
     it "calls the resolve proc with the value" do
-      kase = described_class.new(match: -> * { true }, resolve: resolve = -> value { value.to_s })
+      kase = described_class.new(match: -> * { true }, resolve: -> value { value.to_s })
 
       expect(kase.resolve(123)).to eq "123"
     end

@@ -4,15 +4,15 @@ RSpec.describe Dry::Matcher do
   context "with match cases provided" do
     let(:success_case) {
       Dry::Matcher::Case.new(
-        match: -> result { result.right? },
+        match: -> result { result.success? },
         resolve: -> result { result.value! },
       )
     }
 
     let(:failure_case) {
       Dry::Matcher::Case.new(
-        match: -> result { result.left? },
-        resolve: -> result { result.left },
+        match: -> result { result.failure? },
+        resolve: -> result { result.failure },
       )
     }
 
@@ -36,17 +36,17 @@ RSpec.describe Dry::Matcher do
     end
 
     it "matches on success" do
-      input = Dry::Monads::Right("Yes!")
+      input = Dry::Monads::Success("Yes!")
       expect(call_match(input)).to eq "Success: Yes!"
     end
 
     it "matches on failure" do
-      input = Dry::Monads::Left("No!")
+      input = Dry::Monads::Failure("No!")
       expect(call_match(input)).to eq "Failure: No!"
     end
 
     it "requires an exhaustive match" do
-      input = Dry::Monads::Right("Yes!")
+      input = Dry::Monads::Success("Yes!")
 
       expect {
         matcher.(input) do |m|
