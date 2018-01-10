@@ -1,4 +1,4 @@
-# 0.7.0 / to-be-released
+# 0.7.0 / 2018-01-11
 
 ## Changed
 
