@@ -4,7 +4,7 @@
 
 - `EitherMatcher` was renamed to `ResultMatcher` according to match the rename of `Either` to `Result` in dry-monads 0.4.0. The previous name is still there for backward compatibility, we'll deprecate and drop it in furure releases (flash-gordon in [#13](https://github.com/dry-rb/dry-matcher/pull/13))
 
-[Compare v0.6.0...master](https://github.com/dry-rb/dry-matcher/compare/v0.6.0...master)
+[Compare v0.6.0...v0.7.0](https://github.com/dry-rb/dry-matcher/compare/v0.6.0...v0.7.0)
 
 # 0.6.0 / 2016-12-19
 
