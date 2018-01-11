@@ -11,6 +11,7 @@ module Dry
         @result = result
 
         @unhandled_cases = @cases.keys.map(&:to_sym)
+        @else_handler = -> { ensure_exhaustive_match }
         @matched = false
         @output = nil
       end
@@ -18,9 +19,17 @@ module Dry
       def call
         yield self
 
-        ensure_exhaustive_match
+        @else_handler.call
 
         @output
+      end
+
+      def else(*args, &block)
+        @else_handler = -> do
+          @unhandled_cases.each do |name|
+            handle_case(@cases[name], *args, &block)
+          end
+        end
       end
 
       # Checks whether `cases` given to {#initialize} contains one called `name`
