@@ -2,15 +2,15 @@ language: ruby
 dist: trusty
 cache: bundler
 bundler_args: --without tools
-script:
-  - bundle exec rake
 after_success:
   - '[ -d coverage ] && bundle exec codeclimate-test-reporter'
 rvm:
-  - 2.2.8
-  - 2.3.5
-  - 2.4.2
-  - jruby-9.1.13.0
+  - 2.2.10
+  - 2.3.8
+  - 2.4.5
+  - 2.5.3
+  - 2.6.1
+  - jruby-9.2.6.0
 env:
   global:
     - JRUBY_OPTS='--dev -J-Xmx1024M'
