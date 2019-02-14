@@ -4,6 +4,7 @@ gemspec
 
 gem "bundler"
 gem "rake"
+gem "yard"
 
 group :test do
   gem "codeclimate-test-reporter"
@@ -15,5 +16,4 @@ end
 group :tools do
   gem "byebug", platform: :mri
   gem "pry"
-  gem "yard"
 end
