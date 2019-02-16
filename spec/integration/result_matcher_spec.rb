@@ -1,4 +1,5 @@
-require "dry-monads"
+require "dry/monads/result"
+require "dry/monads/try"
 require "dry/matcher/result_matcher"
 
 RSpec.describe "Dry::Matcher::ResultMatcher" do
@@ -34,7 +35,7 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
     context "result convertible to result" do
       context "converts to success" do
         let(:result) {
-          Dry::Monads::Try.lift([StandardError], -> { 'a success' })
+          Dry::Monads::Try.run([StandardError], -> { 'a success' })
         }
 
         it "matches on success" do
@@ -44,7 +45,7 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
 
       context "converts to failure" do
         let(:result) {
-          Dry::Monads::Try.lift([StandardError], -> { raise('a failure') })
+          Dry::Monads::Try.run([StandardError], -> { raise('a failure') })
         }
 
         it "matches on failure" do

@@ -1,4 +1,4 @@
-require "dry-monads"
+require "dry/monads/result"
 require "dry/matcher/result_matcher"
 
 RSpec.describe "Class enhancement with Dry::Matcher.for" do

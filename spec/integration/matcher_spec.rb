@@ -1,4 +1,4 @@
-require "dry-monads"
+require "dry/monads/result"
 
 RSpec.describe Dry::Matcher do
   context "with match cases provided" do
