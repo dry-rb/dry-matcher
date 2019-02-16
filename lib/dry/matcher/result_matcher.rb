@@ -16,7 +16,7 @@ module Dry
     # @return [Dry::Matcher]
     #
     # @example Usage with `dry-monads`
-    #   require 'dry-monads'
+    #   require 'dry/monads/result'
     #   require 'dry/matcher/result_matcher'
     #
     #   value = Dry::Monads::Result::Success.new('success!')

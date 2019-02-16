@@ -70,7 +70,7 @@ module Dry
     #   after matched pattern
     #
     # @example Usage with `dry-monads`
-    #   require 'dry-monads'
+    #   require 'dry/monads/result'
     #   require 'dry/matcher/result_matcher'
     #
     #   value = Dry::Monads::Result::Failure.new('failure!')

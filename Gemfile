@@ -2,10 +2,15 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "bundler"
+gem "rake"
+gem "yard"
+
 group :test do
-  gem "simplecov"
   gem "codeclimate-test-reporter"
-  gem "dry-monads", '>= 0.4.0'
+  gem "dry-monads", "~> 1.2.0"
+  gem "rspec", "~> 3.8"
+  gem "simplecov"
 end
 
 group :tools do
