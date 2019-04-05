@@ -2,9 +2,10 @@
 [gem]: https://rubygems.org/gems/dry-matcher
 [travis]: https://travis-ci.org/dry-rb/dry-matcher
 [code_climate]: https://codeclimate.com/github/dry-rb/dry-matcher
+[chat]: https://dry-rb.zulipchat.com
 [inch]: http://inch-ci.org/github/dry-rb/dry-matcher
 
-# dry-matcher [![Join the Gitter chat](https://badges.gitter.im/Join%20Chat.svg)][gitter]
+# dry-matcher [![Join the chat at https://dry-rb.zulipchat.com](https://img.shields.io/badge/dry--rb-join%20chat-%23346b7a.svg)][chat]
 
 [![Gem Version](https://img.shields.io/gem/v/dry-matcher.svg)][gem]
 [![Build Status](https://img.shields.io/travis/dry-rb/dry-matcher.svg)][travis]
