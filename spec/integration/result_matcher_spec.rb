@@ -53,5 +53,54 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
         end
       end
     end
+
+    context "multiple branch matching" do
+      subject {
+        Dry::Matcher::ResultMatcher.(result) do |on|
+          on.success(:a) { "Matched specific success: :a" }
+          on.success(:b) { "Matched specific success: :b" }
+          on.success { |v| "Matched general success: #{v}" }
+          on.failure(:a) { "Matched specific failure: :a" }
+          on.failure(:b) { "Matched specific failure: :b" }
+          on.failure { |v| "Matched general failure: #{v}" }
+        end
+      }
+
+      context "specific success for :a" do
+        let(:result) { Dry::Monads::Success(:a) }
+
+        it { is_expected.to eq "Matched specific success: :a"}
+      end
+
+      context "specific success for :b" do
+        let(:result) { Dry::Monads::Success(:b) }
+
+        it { is_expected.to eq "Matched specific success: :b"}
+      end
+
+      context "general success result" do
+        let(:result) { Dry::Monads::Success("a success") }
+
+        it { is_expected.to eq "Matched general success: a success" }
+      end
+
+      context "specific failure for :a" do
+        let(:result) { Dry::Monads::Failure(:a) }
+
+        it { is_expected.to eq "Matched specific failure: :a"}
+      end
+
+      context "specific failure for :b" do
+        let(:result) { Dry::Monads::Failure(:b) }
+
+        it { is_expected.to eq "Matched specific failure: :b"}
+      end
+
+      context "general failure result" do
+        let(:result) { Dry::Monads::Failure("a failure") }
+
+        it { is_expected.to eq "Matched general failure: a failure" }
+      end
+    end
   end
 end

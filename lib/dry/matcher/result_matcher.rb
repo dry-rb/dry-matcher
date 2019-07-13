@@ -50,9 +50,9 @@ module Dry
     #   end # => "nil is falsey"
     ResultMatcher = Dry::Matcher.new(
       success: Case.new(
-        match: -> result, *pattern {
+        match: -> result, *patterns {
           result = result.to_result
-          result.success?
+          result.success? && (patterns.none? || patterns.include?(result.value!))
         },
         resolve: -> result {
           result = result.to_result
@@ -60,9 +60,9 @@ module Dry
         },
       ),
       failure: Case.new(
-        match: -> result, *pattern {
+        match: -> result, *patterns {
           result = result.to_result
-          result.failure?
+          result.failure? && (patterns.none? || patterns.include?(result.failure))
         },
         resolve: -> result {
           result = result.to_result
