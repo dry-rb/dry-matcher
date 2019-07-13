@@ -102,5 +102,55 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
         it { is_expected.to eq "Matched general failure: a failure" }
       end
     end
+
+    context 'using ===' do
+      subject {
+        Dry::Matcher::ResultMatcher.(result) do |on|
+          on.success(/done/) { |s| "Matched string by pattern: #{s.inspect}" }
+          on.success(String) { |s| "Matched string success: #{s.inspect}" }
+          on.success(Integer) { |n| "Matched integer success: #{n}" }
+          on.success(Date, Time) { |t| "Matched date success: #{t.strftime('%Y-%m-%d')}" }
+          on.success { |v| "Matched general success: #{v}" }
+          on.failure(Integer) { |n| "Matched integer failure: #{n}" }
+          on.failure { |v| "Matched general failure: #{v}" }
+        end
+      }
+
+      context 'success string' do
+        let(:result) { Dry::Monads::Success('nicely done') }
+
+        it { is_expected.to eq 'Matched string by pattern: "nicely done"' }
+      end
+
+      context 'success string' do
+        let(:result) { Dry::Monads::Success("yay") }
+
+        it { is_expected.to eq 'Matched string success: "yay"' }
+      end
+
+      context 'success integer' do
+        let(:result) { Dry::Monads::Success(3) }
+
+        it { is_expected.to eq 'Matched integer success: 3' }
+      end
+
+      context 'failure integer' do
+        let(:result) { Dry::Monads::Failure(3) }
+
+        it { is_expected.to eq 'Matched integer failure: 3' }
+      end
+
+      context 'success date' do
+        let(:result) { Dry::Monads::Success(Date.new(2019, 7, 13)) }
+
+        it { is_expected.to eq 'Matched date success: 2019-07-13' }
+      end
+
+      context 'success time' do
+        let(:result) { Dry::Monads::Success(Time.new(2019, 7, 13)) }
+
+        it { is_expected.to eq 'Matched date success: 2019-07-13' }
+      end
+    end
   end
 end

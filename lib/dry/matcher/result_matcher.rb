@@ -52,22 +52,16 @@ module Dry
       success: Case.new(
         match: -> result, *patterns {
           result = result.to_result
-          result.success? && (patterns.none? || patterns.include?(result.value!))
+          result.success? && (patterns.empty? || patterns.any? { |p| p === result.value! })
         },
-        resolve: -> result {
-          result = result.to_result
-          result.value!
-        },
+        resolve: -> result { result.to_result.value! },
       ),
       failure: Case.new(
         match: -> result, *patterns {
           result = result.to_result
-          result.failure? && (patterns.none? || patterns.include?(result.failure))
+          result.failure? && (patterns.empty? || patterns.any? { |p| p === result.failure })
         },
-        resolve: -> result {
-          result = result.to_result
-          result.failure
-        },
+        resolve: -> result { result.to_result.failure },
       )
     )
   end
