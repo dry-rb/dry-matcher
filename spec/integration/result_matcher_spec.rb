@@ -1,10 +1,23 @@
-require "dry/monads/result"
-require "dry/monads/try"
+require 'date'
+require "dry/monads"
 require "dry/matcher/result_matcher"
 
 RSpec.describe "Dry::Matcher::ResultMatcher" do
+  extend Dry::Monads[:result, :try]
+  include Dry::Monads[:result, :try]
+
+  def self.set_up_expectations(matches)
+    matches.each do |value, matched|
+      context "Matching #{value}" do
+        let(:result) { value }
+
+        it { is_expected.to eql(matched) }
+      end
+    end
+  end
+
   describe "external matching" do
-    subject(:match) {
+    subject {
       Dry::Matcher::ResultMatcher.(result) do |m|
         m.success do |v|
           "Matched success: #{v}"
@@ -16,91 +29,56 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
       end
     }
 
-    context "successful result" do
-      let(:result) { Dry::Monads::Success("a success") }
+    set_up_expectations(
+      Success("a success") => "Matched success: a success",
+      Failure("a failure") => "Matched failure: a failure",
+      Try(StandardError) { 'a success' } => "Matched success: a success",
+      Try(StandardError) { raise('a failure') } => "Matched failure: a failure"
+    )
+  end
 
-      it "matches on success" do
-        expect(match).to eq "Matched success: a success"
+  context "multiple branch matching" do
+    subject {
+      Dry::Matcher::ResultMatcher.(result) do |on|
+        on.success(:a) { "Matched specific success: :a" }
+        on.success(:b) { "Matched specific success: :b" }
+        on.success { |v| "Matched general success: #{v}" }
+        on.failure(:a) { "Matched specific failure: :a" }
+        on.failure(:b) { "Matched specific failure: :b" }
+        on.failure { |v| "Matched general failure: #{v}" }
       end
-    end
+    }
 
-    context "failed result" do
-      let(:result) { Dry::Monads::Failure("a failure") }
+    set_up_expectations(
+      Success(:a) => 'Matched specific success: :a',
+      Success(:b) => 'Matched specific success: :b',
+      Success('a success') => 'Matched general success: a success',
+      Failure(:a) => 'Matched specific failure: :a',
+      Failure(:b) => 'Matched specific failure: :b',
+      Failure('a failure') => 'Matched general failure: a failure'
+    )
+  end
 
-      it "matches on failure" do
-        expect(match).to eq "Matched failure: a failure"
+  context 'using ===' do
+    subject {
+      Dry::Matcher::ResultMatcher.(result) do |on|
+        on.success(/done/) { |s| "Matched string by pattern: #{s.inspect}" }
+        on.success(String) { |s| "Matched string success: #{s.inspect}" }
+        on.success(Integer) { |n| "Matched integer success: #{n}" }
+        on.success(Date, Time) { |t| "Matched date success: #{t.strftime('%Y-%m-%d')}" }
+        on.success { |v| "Matched general success: #{v}" }
+        on.failure(Integer) { |n| "Matched integer failure: #{n}" }
+        on.failure { |v| "Matched general failure: #{v}" }
       end
-    end
+    }
 
-    context "result convertible to result" do
-      context "converts to success" do
-        let(:result) {
-          Dry::Monads::Try.run([StandardError], -> { 'a success' })
-        }
-
-        it "matches on success" do
-          expect(match).to eq "Matched success: a success"
-        end
-      end
-
-      context "converts to failure" do
-        let(:result) {
-          Dry::Monads::Try.run([StandardError], -> { raise('a failure') })
-        }
-
-        it "matches on failure" do
-          expect(match).to eq "Matched failure: a failure"
-        end
-      end
-    end
-
-    context "multiple branch matching" do
-      subject {
-        Dry::Matcher::ResultMatcher.(result) do |on|
-          on.success(:a) { "Matched specific success: :a" }
-          on.success(:b) { "Matched specific success: :b" }
-          on.success { |v| "Matched general success: #{v}" }
-          on.failure(:a) { "Matched specific failure: :a" }
-          on.failure(:b) { "Matched specific failure: :b" }
-          on.failure { |v| "Matched general failure: #{v}" }
-        end
-      }
-
-      context "specific success for :a" do
-        let(:result) { Dry::Monads::Success(:a) }
-
-        it { is_expected.to eq "Matched specific success: :a"}
-      end
-
-      context "specific success for :b" do
-        let(:result) { Dry::Monads::Success(:b) }
-
-        it { is_expected.to eq "Matched specific success: :b"}
-      end
-
-      context "general success result" do
-        let(:result) { Dry::Monads::Success("a success") }
-
-        it { is_expected.to eq "Matched general success: a success" }
-      end
-
-      context "specific failure for :a" do
-        let(:result) { Dry::Monads::Failure(:a) }
-
-        it { is_expected.to eq "Matched specific failure: :a"}
-      end
-
-      context "specific failure for :b" do
-        let(:result) { Dry::Monads::Failure(:b) }
-
-        it { is_expected.to eq "Matched specific failure: :b"}
-      end
-
-      context "general failure result" do
-        let(:result) { Dry::Monads::Failure("a failure") }
-
-        it { is_expected.to eq "Matched general failure: a failure" }
-      end
-    end
+    set_up_expectations(
+      Success('nicely done') => 'Matched string by pattern: "nicely done"',
+      Success('yay') => 'Matched string success: "yay"',
+      Success(3) => 'Matched integer success: 3',
+      Failure(3) => 'Matched integer failure: 3',
+      Success(Date.new(2019, 7, 13)) => 'Matched date success: 2019-07-13',
+      Success(Time.new(2019, 7, 13)) => 'Matched date success: 2019-07-13',
+    )
   end
 end
