@@ -11,8 +11,6 @@ module Dry
         @result = result
 
         @unhandled_cases = @cases.keys.map(&:to_sym)
-        @matched = false
-        @output = nil
       end
 
       def call
@@ -20,7 +18,7 @@ module Dry
 
         ensure_exhaustive_match
 
-        @output
+        @output if defined? @output
       end
 
       # Checks whether `cases` given to {#initialize} contains one called `name`
@@ -46,10 +44,15 @@ module Dry
       # @raise [NoMethodError] if there was no case called `name` given to
       #   {#initialize} in `cases` hash
       def method_missing(name, *args, &block)
-        return super unless @cases.key?(name)
+        kase = @cases.fetch(name) { return super }
 
         @unhandled_cases.delete name
-        handle_case @cases[name], *args, &block
+
+        unless defined? @output
+          kase.(@result, args) do |result|
+            @output = yield(result)
+          end
+        end
       end
 
       private
@@ -57,17 +60,6 @@ module Dry
       def ensure_exhaustive_match
         if @unhandled_cases.any?
           ::Kernel.raise NonExhaustiveMatchError, "cases +#{@unhandled_cases.join(', ')}+ not handled"
-        end
-      end
-
-      # @param [Case] kase
-      # @param [Array] pattern
-      def handle_case(kase, *pattern)
-        return @output if @matched
-
-        if kase.matches?(@result, *pattern)
-          @matched = true
-          @output = yield(kase.resolve(@result))
         end
       end
     end

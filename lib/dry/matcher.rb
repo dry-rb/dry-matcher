@@ -1,9 +1,12 @@
+require "dry/core/constants"
 require "dry/matcher/case"
 require "dry/matcher/evaluator"
 
 module Dry
   # @see http://dry-rb.org/gems/dry-matcher
   class Matcher
+    include Core::Constants
+
     # Generates a module containing pattern matching for methods listed in
     # `match_methods` argument with behavior defined by `with` matcher
     #
