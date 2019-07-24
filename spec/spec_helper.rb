@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
-if RUBY_ENGINE == 'ruby' && RUBY_VERSION >= '2.3'
-  require 'simplecov'
-  SimpleCov.start
+if RUBY_ENGINE == 'ruby' && ENV['COVERAGE'] == 'true'
+  require 'yaml'
+  rubies = YAML.load(File.read(File.join(__dir__, '..', '.travis.yml')))['rvm']
+  latest_mri = rubies.select { |v| v =~ /\A\d+\.\d+.\d+\z/ }.max
+
+  if RUBY_VERSION == latest_mri
+    require 'simplecov'
+    SimpleCov.start do
+      add_filter '/spec/'
+    end
+  end
 end
 
 begin
