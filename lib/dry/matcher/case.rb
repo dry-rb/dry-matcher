@@ -7,29 +7,27 @@ module Dry
 
       # @param match [#call] callable used to test given pattern against value
       # @param resolve [#call] callable used to resolve value into a result
-      def initialize(match:, resolve: DEFAULT_RESOLVE)
-        @match = match
-        @resolve = resolve
+      def initialize(match: Undefined, resolve: DEFAULT_RESOLVE, &block)
+        if block
+          @match = block
+        else
+          @match = proc do |value, patterns|
+            if match.(value, *patterns)
+              resolve.(value)
+            else
+              Undefined
+            end
+          end
+        end
       end
 
-      # Tests whether `value` (with optional `*pattern`) matches pattern using
-      # callable given to {#initialize} as `match:` argument
-      #
-      # @param [Object] value
-      # @param [<Object>] pattern optional pattern given after the `value` to
-      #   `match:` callable
-      # @return [Boolean]
-      def matches?(value, *pattern)
-        @match.(value, *pattern)
-      end
-
-      # Resolves result from `value` using callable given to {#initialize}
-      # as `resolve:` argument
-      #
-      # @param [Object] value
-      # @return [Object] result resolved from given `value`
-      def resolve(value)
-        @resolve.(value)
+      # @param [Object] value Value to match
+      # @param [Array<Object>] patterns Optional list of patterns to match against
+      # @yieldparam [Object] v Resolved value if match succeeds
+      # @return [Object,Dry::Core::Constants::Undefined] Either the yield result
+      #   or Undefined if match wasn't successful
+      def call(value, patterns = EMPTY_ARRAY, &block)
+        Undefined.map(@match.(value, patterns), &block)
       end
     end
   end
