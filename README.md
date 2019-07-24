@@ -1,16 +1,17 @@
 [gitter]: https://gitter.im/dry-rb/chat
 [gem]: https://rubygems.org/gems/dry-matcher
 [travis]: https://travis-ci.org/dry-rb/dry-matcher
-[code_climate]: https://codeclimate.com/github/dry-rb/dry-matcher
 [chat]: https://dry-rb.zulipchat.com
 [inch]: http://inch-ci.org/github/dry-rb/dry-matcher
+[codeclimate]: https://codeclimate.com/github/dry-rb/dry-matcher/maintainability
+[coverage]: https://codeclimate.com/github/dry-rb/dry-matcher/test_coverage
 
 # dry-matcher [![Join the chat at https://dry-rb.zulipchat.com](https://img.shields.io/badge/dry--rb-join%20chat-%23346b7a.svg)][chat]
 
 [![Gem Version](https://img.shields.io/gem/v/dry-matcher.svg)][gem]
 [![Build Status](https://img.shields.io/travis/dry-rb/dry-matcher.svg)][travis]
-[![Code Climate](https://img.shields.io/codeclimate/github/dry-rb/dry-matcher.svg)][code_climate]
-[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/dry-rb/dry-matcher.svg)][code_climate]
+[![Maintainability](https://api.codeclimate.com/v1/badges/6765625216f301c617eb/maintainability)](codeclimate)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6765625216f301c617eb/test_coverage)](coverage)
 [![API Documentation Coverage](http://inch-ci.org/github/dry-rb/dry-matcher.svg)][inch]
 
 Flexible, expressive pattern matching for Ruby.
