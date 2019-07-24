@@ -49,20 +49,36 @@ module Dry
     #     m.failure { |v| "#{v.inspect} is falsey" }
     #   end # => "nil is falsey"
     ResultMatcher = Dry::Matcher.new(
-      success: Case.new(
-        match: -> result, *patterns {
-          result = result.to_result
-          result.success? && (patterns.empty? || patterns.any? { |p| p === result.value! })
-        },
-        resolve: -> result { result.to_result.value! },
-      ),
-      failure: Case.new(
-        match: -> result, *patterns {
-          result = result.to_result
-          result.failure? && (patterns.empty? || patterns.any? { |p| p === result.failure })
-        },
-        resolve: -> result { result.to_result.failure },
-      )
+      success: Case.new { |result, patterns|
+        result = result.to_result
+
+        if result.success?
+          value = result.value!
+
+          if patterns.empty? || patterns.any? { |p| p === value }
+            value
+          else
+            Undefined
+          end
+        else
+          Undefined
+        end
+      },
+      failure: Case.new { |result, patterns|
+        result = result.to_result
+
+        if result.failure?
+          value = result.failure
+
+          if patterns.empty? || patterns.any? { |p| p === value }
+            value
+          else
+            Undefined
+          end
+        else
+          Undefined
+        end
+      }
     )
   end
 end
