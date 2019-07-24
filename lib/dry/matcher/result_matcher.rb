@@ -1,4 +1,6 @@
-require "dry/matcher"
+# frozen_string_literal: true
+
+require 'dry/matcher'
 
 module Dry
   class Matcher

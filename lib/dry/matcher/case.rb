@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Dry
   class Matcher
     # {Case} object contains logic for pattern matching and resolving result

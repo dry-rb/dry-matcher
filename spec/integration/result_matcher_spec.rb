@@ -1,8 +1,10 @@
-require 'date'
-require "dry/monads"
-require "dry/matcher/result_matcher"
+# frozen_string_literal: true
 
-RSpec.describe "Dry::Matcher::ResultMatcher" do
+require 'date'
+require 'dry/monads'
+require 'dry/matcher/result_matcher'
+
+RSpec.describe 'Dry::Matcher::ResultMatcher' do
   extend Dry::Monads[:result, :try]
   include Dry::Monads[:result, :try]
 
@@ -16,8 +18,8 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
     end
   end
 
-  describe "external matching" do
-    subject {
+  describe 'external matching' do
+    subject do
       Dry::Matcher::ResultMatcher.(result) do |m|
         m.success do |v|
           "Matched success: #{v}"
@@ -27,27 +29,27 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
           "Matched failure: #{v}"
         end
       end
-    }
+    end
 
     set_up_expectations(
-      Success("a success") => "Matched success: a success",
-      Failure("a failure") => "Matched failure: a failure",
-      Try(StandardError) { 'a success' } => "Matched success: a success",
-      Try(StandardError) { raise('a failure') } => "Matched failure: a failure"
+      Success('a success') => 'Matched success: a success',
+      Failure('a failure') => 'Matched failure: a failure',
+      Try(StandardError) { 'a success' } => 'Matched success: a success',
+      Try(StandardError) { raise('a failure') } => 'Matched failure: a failure'
     )
   end
 
-  context "multiple branch matching" do
-    subject {
+  context 'multiple branch matching' do
+    subject do
       Dry::Matcher::ResultMatcher.(result) do |on|
-        on.success(:a) { "Matched specific success: :a" }
-        on.success(:b) { "Matched specific success: :b" }
+        on.success(:a) { 'Matched specific success: :a' }
+        on.success(:b) { 'Matched specific success: :b' }
         on.success { |v| "Matched general success: #{v}" }
-        on.failure(:a) { "Matched specific failure: :a" }
-        on.failure(:b) { "Matched specific failure: :b" }
+        on.failure(:a) { 'Matched specific failure: :a' }
+        on.failure(:b) { 'Matched specific failure: :b' }
         on.failure { |v| "Matched general failure: #{v}" }
       end
-    }
+    end
 
     set_up_expectations(
       Success(:a) => 'Matched specific success: :a',
@@ -60,7 +62,7 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
   end
 
   context 'using ===' do
-    subject {
+    subject do
       Dry::Matcher::ResultMatcher.(result) do |on|
         on.success(/done/) { |s| "Matched string by pattern: #{s.inspect}" }
         on.success(String) { |s| "Matched string success: #{s.inspect}" }
@@ -70,7 +72,7 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
         on.failure(Integer) { |n| "Matched integer failure: #{n}" }
         on.failure { |v| "Matched general failure: #{v}" }
       end
-    }
+    end
 
     set_up_expectations(
       Success('nicely done') => 'Matched string by pattern: "nicely done"',
@@ -78,12 +80,12 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
       Success(3) => 'Matched integer success: 3',
       Failure(3) => 'Matched integer failure: 3',
       Success(Date.new(2019, 7, 13)) => 'Matched date success: 2019-07-13',
-      Success(Time.new(2019, 7, 13)) => 'Matched date success: 2019-07-13',
+      Success(Time.new(2019, 7, 13)) => 'Matched date success: 2019-07-13'
     )
   end
 
   context 'matching tuples using codes' do
-    subject {
+    subject do
       Dry::Matcher::ResultMatcher.(result) do |on|
         on.success(:created) { |code, s| "Matched #{code.inspect} by code: #{s.inspect}" }
         on.success(:updated) { |_, s, v| "Matched :updated by code: #{s.inspect}, #{v.inspect}" }
@@ -95,16 +97,16 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
         on.failure('not_found') { |e| "Matched not found by string: #{e.inspect}" }
         on.failure { |v| "Matched general failure: #{v.inspect}" }
       end
-    }
+    end
 
     set_up_expectations(
       Success([:created, 5]) => 'Matched :created by code: 5',
       Success([:updated, 6, 7]) => 'Matched :updated by code: 6, 7',
       Success([:deleted, 8, 9]) => 'Matched :deleted by code: 8',
       Success([:else, 10, 11]) => 'Matched :else by Symbol: 10',
-      Success([201, {}, "done!"]) => 'Matched 201 body: done!',
+      Success([201, {}, 'done!']) => 'Matched 201 body: done!',
       Success(['complete']) => 'Matched general success: ["complete"]',
-      Failure([:not_found, :for_a_reason]) => 'Matched not found with :for_a_reason',
+      Failure(%i[not_found for_a_reason]) => 'Matched not found with :for_a_reason',
       Failure(:other) => 'Matched general failure: :other'
     )
   end

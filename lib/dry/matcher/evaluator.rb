@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Dry
   class Matcher
     NonExhaustiveMatchError = Class.new(StandardError)
@@ -25,7 +27,7 @@ module Dry
       # @param [String] name
       # @param [Boolean] include_private
       # @return [Boolean]
-      def respond_to_missing?(name, include_private = false)
+      def respond_to_missing?(name, _include_private = false)
         @cases.key?(name)
       end
 

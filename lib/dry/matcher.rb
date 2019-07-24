@@ -1,6 +1,8 @@
-require "dry/core/constants"
-require "dry/matcher/case"
-require "dry/matcher/evaluator"
+# frozen_string_literal: true
+
+require 'dry/core/constants'
+require 'dry/matcher/case'
+require 'dry/matcher/evaluator'
 
 module Dry
   # @see http://dry-rb.org/gems/dry-matcher
