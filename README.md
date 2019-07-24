@@ -10,8 +10,8 @@
 
 [![Gem Version](https://img.shields.io/gem/v/dry-matcher.svg)][gem]
 [![Build Status](https://img.shields.io/travis/dry-rb/dry-matcher.svg)][travis]
-[![Maintainability](https://api.codeclimate.com/v1/badges/6765625216f301c617eb/maintainability)](codeclimate)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6765625216f301c617eb/test_coverage)](coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6765625216f301c617eb/maintainability)][codeclimate]
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6765625216f301c617eb/test_coverage)][coverage]
 [![API Documentation Coverage](http://inch-ci.org/github/dry-rb/dry-matcher.svg)][inch]
 
 Flexible, expressive pattern matching for Ruby.
