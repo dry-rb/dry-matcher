@@ -1,6 +1,6 @@
 [gitter]: https://gitter.im/dry-rb/chat
 [gem]: https://rubygems.org/gems/dry-matcher
-[travis]: https://travis-ci.org/dry-rb/dry-matcher
+[travis]: https://travis-ci.com/dry-rb/dry-matcher
 [chat]: https://dry-rb.zulipchat.com
 [inch]: http://inch-ci.org/github/dry-rb/dry-matcher
 [codeclimate]: https://codeclimate.com/github/dry-rb/dry-matcher/maintainability
@@ -18,7 +18,7 @@ Flexible, expressive pattern matching for Ruby.
 
 ## Links
 
-* [Documentation](http://dry-rb.org/gems/dry-matcher)
+- [Documentation](http://dry-rb.org/gems/dry-matcher)
 
 ## License
 
