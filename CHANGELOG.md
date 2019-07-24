@@ -1,3 +1,43 @@
+# 0.8.0 / unreleased
+
+## Changed
+
+- [BREAKING] Support for Ruby 2.3 was dropped as it's EOL
+
+## Added
+- API for cases was changed to work with a single block instead of `match`/`resolve` combination (flash-gordon in [#23](https://github.com/dry-rb/dry-matcher/pull/23)):
+  ```ruby
+  Dry::Matcher::Case.new do |value, patterns|
+    if patterns.include?(value)
+      # value will be passed to the block
+      value
+     else
+       # Undefined stands for no match
+       Dry::Matcher::Undefined
+    end
+  end
+  ```
+- `ResultMatcher` now uses patterns for matching and matches against the first element if an array is passed (flash-gordon in [#24](https://github.com/dry-rb/dry-matcher/pull/24) and [#22](https://github.com/dry-rb/dry-matcher/pull/22) and michaelherold in [#21](https://github.com/dry-rb/dry-matcher/pull/21))
+```ruby
+value = Dry::Monads::Result::Failure.new([:invalid, :reasons])
+
+Dry::Matcher::ResultMatcher.(value) do |m|
+  m.success do |v|
+    "Yay: #{v}"
+  end
+  
+  m.failure(:not_found) do
+    "No such thing"
+  end
+  
+  m.failure(:invalid) do |_code, errors|
+    "Cannot be done: #{errors.inspect}"
+  end
+end #=> "Cannot be done: :reasons"
+```
+
+[Compare v0.7.0...master](https://github.com/dry-rb/dry-matcher/compare/v0.7.0...master)
+
 # 0.7.0 / 2018-01-11
 
 ## Changed
