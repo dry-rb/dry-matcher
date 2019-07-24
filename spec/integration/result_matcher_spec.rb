@@ -81,4 +81,31 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
       Success(Time.new(2019, 7, 13)) => 'Matched date success: 2019-07-13',
     )
   end
+
+  context 'matching tuples using codes' do
+    subject {
+      Dry::Matcher::ResultMatcher.(result) do |on|
+        on.success(:created) { |code, s| "Matched #{code.inspect} by code: #{s.inspect}" }
+        on.success(:updated) { |_, s, v| "Matched :updated by code: #{s.inspect}, #{v.inspect}" }
+        on.success(:deleted) { |_, s| "Matched :deleted by code: #{s.inspect}" }
+        on.success(Symbol) { |sym, s| "Matched #{sym.inspect} by Symbol: #{s.inspect}" }
+        on.success(200...300) { |status, _, body| "Matched #{status} body: #{body}" }
+        on.success { |v| "Matched general success: #{v.inspect}" }
+        on.failure(:not_found) { |_, e| "Matched not found with #{e.inspect}" }
+        on.failure('not_found') { |e| "Matched not found by string: #{e.inspect}" }
+        on.failure { |v| "Matched general failure: #{v.inspect}" }
+      end
+    }
+
+    set_up_expectations(
+      Success([:created, 5]) => 'Matched :created by code: 5',
+      Success([:updated, 6, 7]) => 'Matched :updated by code: 6, 7',
+      Success([:deleted, 8, 9]) => 'Matched :deleted by code: 8',
+      Success([:else, 10, 11]) => 'Matched :else by Symbol: 10',
+      Success([201, {}, "done!"]) => 'Matched 201 body: done!',
+      Success(['complete']) => 'Matched general success: ["complete"]',
+      Failure([:not_found, :for_a_reason]) => 'Matched not found with :for_a_reason',
+      Failure(:other) => 'Matched general failure: :other'
+    )
+  end
 end
