@@ -15,8 +15,10 @@ Gem::Specification.new do |spec|
   spec.description    = spec.summary
   spec.homepage       = 'http://dry-rb.org/gems/dry-matcher'
 
-  spec.files          = Dir['README.md', 'LICENSE.md', 'CHANGELOG.md', 'Gemfile', 'Rakefile', 'lib/**/*', 'spec/**/*']
-  spec.require_paths  = ['lib']
+  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features|bin)/}) }
+  spec.bindir        = 'exe'
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.4.0'
 
