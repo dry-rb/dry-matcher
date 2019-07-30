@@ -7,8 +7,8 @@ require 'dry/matcher/version'
 Gem::Specification.new do |spec|
   spec.name           = 'dry-matcher'
   spec.version        = Dry::Matcher::VERSION
-  spec.authors        = ['Tim Riley']
-  spec.email          = ['tim@icelab.com.au']
+  spec.authors        = ['Tim Riley', 'Nikita Shilnikov']
+  spec.email          = ['tim@icelab.com.au', 'fg@flashgordon.ru']
   spec.license        = 'MIT'
 
   spec.summary        = 'Flexible, expressive pattern matching for Ruby'
