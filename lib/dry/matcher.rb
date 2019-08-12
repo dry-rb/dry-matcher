@@ -87,5 +87,14 @@ module Dry
     def call(result, &block)
       Evaluator.new(result, cases).call(&block)
     end
+
+    # Shortcut for Dry::Matcher.for(..., with: matcher)
+    #
+    # @param [Array[Symbol]]
+    #
+    # @return [Module]
+    def for(*methods)
+      self.class.for(*methods, with: self)
+    end
   end
 end
