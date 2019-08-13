@@ -110,4 +110,33 @@ RSpec.describe 'Dry::Matcher::ResultMatcher' do
       Failure(:other) => 'Matched general failure: :other'
     )
   end
+
+  context 'with .for' do
+    let(:operation) do
+      class Operation
+        include Dry::Matcher::ResultMatcher.for(:perform)
+
+        def perform(value)
+          value
+        end
+      end
+
+      stub_const('Operation', Operation)
+      Operation.new
+    end
+
+    context 'using with methods' do
+      def match(value)
+        operation.perform(value) do |m|
+          m.success { |v| "success: #{v}" }
+          m.failure { |e| "failure: #{e}" }
+        end
+      end
+
+      it 'builds a wrapping module' do
+        expect(match(Success(:foo))).to eql('success: foo')
+        expect(match(Failure(:bar))).to eql('failure: bar')
+      end
+    end
+  end
 end
