@@ -4,16 +4,12 @@ require 'dry/matcher'
 
 module Dry
   class Matcher
-    match = ::Proc.new do |value, patterns|
-      if patterns.empty?
-        value
-      elsif value.is_a?(::Array) && patterns.any? { |p| p === value[0] }
-        value
-      elsif patterns.any? { |p| p === value }
-        value
-      else
-        Undefined
-      end
+    match = lambda do |value, patterns|
+      return value if patterns.empty?
+      return value if value.is_a?(::Array) && patterns.any? { |p| p === value[0] }
+      return value if patterns.any? { |p| p === value }
+
+      Undefined
     end
 
     # Built-in {Matcher} ready to use with `Result` or `Try` monads from
@@ -81,24 +77,24 @@ module Dry
     #   end #=> "Cannot be done: :reasons"
     #
     ResultMatcher = Dry::Matcher.new(
-      success: Case.new { |result, patterns|
+      success: Case.new do |result, patterns|
         result = result.to_result
 
         if result.success?
-          match.(result.value!, patterns)
+          match.call(result.value!, patterns)
         else
           Undefined
         end
-      },
-      failure: Case.new { |result, patterns|
+      end,
+      failure: Case.new do |result, patterns|
         result = result.to_result
 
         if result.failure?
-          match.(result.failure, patterns)
+          match.call(result.failure, patterns)
         else
           Undefined
         end
-      }
+      end
     )
   end
 end
