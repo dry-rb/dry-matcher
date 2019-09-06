@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.4.0'
 
-  spec.add_runtime_dependency 'dry-core', '>= 0.4.7'
+  spec.add_runtime_dependency 'dry-core', '>= 0.4.8'
 end
