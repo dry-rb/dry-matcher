@@ -4,6 +4,8 @@
 
 - Minimal dry-core version set to 0.4.8 (flash-gordon)
 
+[Compare v0.8.1...v0.8.2](https://github.com/dry-rb/dry-matcher/compare/v0.8.1...v0.8.2)
+
 # 0.8.1 / 2019-08-13
 
 ## Added
