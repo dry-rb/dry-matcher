@@ -1,20 +1,27 @@
+# 0.8.2 / 2019-09-06
+
+## Fixed
+
+- Minimal dry-core version set to 0.4.8 (flash-gordon)
+
 # 0.8.1 / 2019-08-13
 
 ## Added
 
 - `Dry::Matcher#for` is a shortcut for `Dry::Matcher.for(..., with: matcher)` (flash-gordon)
+
   ```ruby
   require 'dry/matcher/result_matcher'
-  
+
   class CreateUser
     include Dry::Matcher::ResultMatcher.for(:call)
-    
+
     def call(...)
       # code returning an instance of Dry::Monads::Result
     end
   end
   ```
-  
+
 [Compare v0.8.0...v0.8.1](https://github.com/dry-rb/dry-matcher/compare/v0.8.0...v0.8.1)
 
 # 0.8.0 / 2019-07-30
