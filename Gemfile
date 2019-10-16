@@ -19,4 +19,5 @@ group :tools do
   gem 'byebug', platform: :mri
   gem 'pry'
   gem 'rubocop', require: false
+  gem 'ossy', git: 'https://github.com/solnic/ossy.git', branch: 'master'
 end
