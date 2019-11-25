@@ -32,7 +32,7 @@ end
 
 # Match `[:err, some_error_code, some_value]` for failure
 failure_case = Dry::Matcher::Case.new do |(code, value), patterns|
-  if code.equal?(:err) && (patterns.empty? || patterns.include?(value)
+  if code.equal?(:err) && (patterns.empty? || patterns.include?(value))
     value
   else
     Dry::Matcher::Undefined
