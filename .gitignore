@@ -5,3 +5,4 @@
 /spec/examples.txt
 /pkg
 tmp/
+.bundle
