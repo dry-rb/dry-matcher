@@ -20,7 +20,7 @@ RSpec.describe Dry::Matcher::Case do
         expect(kase.call(123) { |result| result }).to eq '123'
       end
 
-        kase = described_class.new(match: -> * { true })
+      kase = described_class.new(match: -> * { true })
       it 'defaults to passing through the value' do
         expect(kase.call(123) { |result| result }).to eq 123
       end

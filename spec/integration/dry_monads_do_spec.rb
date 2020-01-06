@@ -16,7 +16,7 @@ RSpec.describe 'Integration with dry-monads Do notation' do
       end
 
       operation.(name: "Jo") do |m|
-        m.success { }
+        m.success {}
         m.failure { |v| matched_failure = v }
       end
 
