@@ -10,12 +10,12 @@ RSpec.describe 'Integration with dry-monads Do notation' do
       matched_success = nil
       matched_failure = nil
 
-      operation.(name: "Jane", email: "jane@example.com") do |m|
+      operation.(name: 'Jane', email: 'jane@example.com') do |m|
         m.success { |v| matched_success = v }
         m.failure {}
       end
 
-      operation.(name: "Jo") do |m|
+      operation.(name: 'Jo') do |m|
         m.success {}
         m.failure { |v| matched_failure = v }
       end
