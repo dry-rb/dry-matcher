@@ -9,6 +9,8 @@ module Dry
   class Matcher
     include Core::Constants
 
+    RUBY2_KEYWORDS = respond_to?(:ruby2_keywords, true)
+
     # Generates a module containing pattern matching for methods listed in
     # `match_methods` argument with behavior defined by `with` matcher
     #
@@ -45,6 +47,7 @@ module Dry
               result
             end
           end
+          ruby2_keywords(match_method) if RUBY2_KEYWORDS
         end
       end
 
