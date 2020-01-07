@@ -8,6 +8,8 @@ RSpec.describe 'Dry::Matcher::ResultMatcher' do
   extend Dry::Monads[:result, :try]
   include Dry::Monads[:result, :try]
 
+  before { Object.send(:remove_const, :Operation) if defined? Operation }
+
   def self.set_up_expectations(matches)
     matches.each do |value, matched|
       context "Matching #{value}" do
@@ -120,8 +122,6 @@ RSpec.describe 'Dry::Matcher::ResultMatcher' do
           value
         end
       end
-
-      stub_const('Operation', Operation)
       Operation.new
     end
 
@@ -136,6 +136,28 @@ RSpec.describe 'Dry::Matcher::ResultMatcher' do
       it 'builds a wrapping module' do
         expect(match(Success(:foo))).to eql('success: foo')
         expect(match(Failure(:bar))).to eql('failure: bar')
+      end
+    end
+
+    context 'with keyword arguments' do
+      let(:operation) do
+        class Operation
+          include Dry::Matcher::ResultMatcher.for(:perform)
+
+          def perform(value:)
+            value
+          end
+        end
+        Operation.new
+      end
+
+      it 'works without a warning' do
+        result = operation.perform(value: Success(1)) do |m|
+          m.success { |v| v }
+          m.failure { raise }
+        end
+
+        expect(result).to be(1)
       end
     end
   end
