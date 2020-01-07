@@ -1,3 +1,11 @@
+# 0.8.3 / 2020-01-07
+
+## Fixed
+
+- Delegation warnings about keyword arguments (flash-gordon)
+
+[Compare v0.8.2...v0.8.3](https://github.com/dry-rb/dry-matcher/compare/v0.8.2...v0.8.3)
+
 # 0.8.2 / 2019-09-06
 
 ## Fixed
