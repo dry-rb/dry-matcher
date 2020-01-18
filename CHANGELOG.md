@@ -5,6 +5,7 @@
 
 - Delegation warnings about keyword arguments (flash-gordon)
 
+
 [Compare v0.8.2...v0.8.3](https://github.com/dry-rb/dry-matcher/compare/v0.8.2...v0.8.3)
 
 ## 0.8.2 2019-09-06
@@ -13,6 +14,7 @@
 ### Fixed
 
 - Minimal dry-core version set to 0.4.8 (flash-gordon)
+
 
 [Compare v0.8.1...v0.8.2](https://github.com/dry-rb/dry-matcher/compare/v0.8.1...v0.8.2)
 
@@ -34,6 +36,7 @@
     end
   end
   ```
+
 
 [Compare v0.8.0...v0.8.1](https://github.com/dry-rb/dry-matcher/compare/v0.8.0...v0.8.1)
 
@@ -77,6 +80,7 @@
 ### Changed
 
 - [BREAKING] Support for Ruby 2.3 was dropped as it's EOL
+
 [Compare v0.7.0...v0.8.0](https://github.com/dry-rb/dry-matcher/compare/v0.7.0...v0.8.0)
 
 ## 0.7.0 2018-01-11
@@ -85,6 +89,7 @@
 ### Changed
 
 - `EitherMatcher` was renamed to `ResultMatcher` according to match the rename of `Either` to `Result` in dry-monads 0.4.0. The previous name is still there for backward compatibility, we'll deprecate and drop it in furure releases (flash-gordon in [#13](https://github.com/dry-rb/dry-matcher/pull/13))
+
 [Compare v0.6.0...v0.7.0](https://github.com/dry-rb/dry-matcher/compare/v0.6.0...v0.7.0)
 
 ## 0.6.0 2016-12-19
@@ -102,6 +107,7 @@
 
 - Matches must now be exhaustive - when matching against a value, at least one match block must be provided for each of a matcher's cases (timriley in [#7](https://github.com/dry-rb/dry-matcher/pull/7))
 - `Dry::Matcher::Case` objects can now be created without a `resolve:` proc. In this case, a default will be provided that passes the result value through (timriley in [#9](https://github.com/dry-rb/dry-matcher/pull/9))
+
 [Compare v0.5.0...v0.6.0](https://github.com/dry-rb/dry-matcher/compare/v0.5.0...v0.6.0)
 
 ## 0.5.0 2016-06-30
@@ -165,6 +171,7 @@
   end
   ```
 - The previous `Dry::ResultMatcher.match` behaviour (for matching `Either` monads) has been moved to `Dry::Matcher::EitherMatcher.call`
+
 [Compare v0.4.0...v0.5.0](https://github.com/dry-rb/dry-matcher/compare/v0.4.0...v0.5.0)
 
 ## 0.4.0 2016-06-08
@@ -177,6 +184,7 @@
 ### Changed
 
 - Expect monads from [dry-monads](https://github.com/dry-rb/dry-monads) instead of [Kleisli](https://github.com/txus/kleisli) (ttdonovan)
+
 [Compare v0.3.0...v0.4.0](https://github.com/dry-rb/dry-matcher/compare/v0.3.0...v0.4.0)
 
 ## 0.3.0 2016-03-23
@@ -185,6 +193,7 @@
 ### Changed
 
 - Renamed to `dry-result_matcher`. Match results using `Dry::ResultMatcher.match` or extend your own classes with `Dry::ResultMatcher.for`.
+
 [Compare v0.2.0...v0.3.0](https://github.com/dry-rb/dry-matcher/compare/v0.2.0...v0.3.0)
 
 ## 0.2.0 2016-02-10
@@ -193,6 +202,7 @@
 ### Added
 
 - Added `EitherResultMatcher.for(*methods)` to return a module wrapping the specified methods (returning an `Either`) with the match block API. Example usage, in a class with a `#call` method: `include EitherResultMatcher.for(:call)`.
+
 
 [Compare v0.1.0...v0.2.0](https://github.com/dry-rb/dry-matcher/compare/v0.1.0...v0.2.0)
 
