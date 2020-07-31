@@ -15,7 +15,7 @@ You can build your own matcher or use the out-of-the-box support for matching on
 
 ## Building a matcher
 
-To build your own matcher, create a series of "case" objects with their own resolving logic. First argument of the case block is the value to match, second argument is the list of patterns (see below). The block must either return the result or `Dry::Matcher::Undefined` if the has no match. The latter signals dry-matcher to try the next case.
+To build your own matcher, create a series of "case" objects with their own resolving logic. First argument of the case block is the value to match, second argument is the list of patterns (see below). The block must either return the result or `Dry::Matcher::Undefined` if the value has no match. The latter signals dry-matcher to try the next case.
 
 ```ruby
 require "dry-matcher"
