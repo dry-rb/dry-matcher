@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'dry/monads/result'
+require "dry/monads/result"
 
 RSpec.describe Dry::Matcher do
-  context 'with match cases provided' do
+  context "with match cases provided" do
     let(:success_case) do
       Dry::Matcher::Case.new(
         match: -> result { result.success? },
@@ -37,18 +37,18 @@ RSpec.describe Dry::Matcher do
       end
     end
 
-    it 'matches on success' do
-      input = Dry::Monads::Success('Yes!')
-      expect(call_match(input)).to eq 'Success: Yes!'
+    it "matches on success" do
+      input = Dry::Monads::Success("Yes!")
+      expect(call_match(input)).to eq "Success: Yes!"
     end
 
-    it 'matches on failure' do
-      input = Dry::Monads::Failure('No!')
-      expect(call_match(input)).to eq 'Failure: No!'
+    it "matches on failure" do
+      input = Dry::Monads::Failure("No!")
+      expect(call_match(input)).to eq "Failure: No!"
     end
 
-    it 'requires an exhaustive match' do
-      input = Dry::Monads::Success('Yes!')
+    it "requires an exhaustive match" do
+      input = Dry::Monads::Success("Yes!")
 
       expect {
         matcher.(input) do |m|
@@ -57,7 +57,7 @@ RSpec.describe Dry::Matcher do
       }.to raise_error Dry::Matcher::NonExhaustiveMatchError
     end
 
-    context 'with patterns' do
+    context "with patterns" do
       let(:success_case) do
         Dry::Matcher::Case.new(
           match: -> result { result.first == :ok },
@@ -84,13 +84,13 @@ RSpec.describe Dry::Matcher do
         end
       end
 
-      it 'matches using the provided pattern' do
-        input = [:failure, :my_error, 'No!']
-        expect(call_match(input)).to eq 'Pattern-matched failure: No!'
+      it "matches using the provided pattern" do
+        input = [:failure, :my_error, "No!"]
+        expect(call_match(input)).to eq "Pattern-matched failure: No!"
       end
 
       it "doesn't match if the pattern doesn't match" do
-        input = [:failure, :non_matching_error, 'No!']
+        input = [:failure, :non_matching_error, "No!"]
         expect(call_match(input)).to be_nil
       end
     end
