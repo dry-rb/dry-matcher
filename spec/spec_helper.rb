@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require_relative 'support/coverage'
-require_relative 'support/warnings'
+require_relative "support/coverage"
+require_relative "support/warnings"
 
 begin
-  require 'byebug'
+  require "byebug"
 rescue LoadError; end
-require 'dry-matcher'
+require "dry-matcher"
 
-Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   config.disable_monkey_patching!
@@ -26,7 +26,7 @@ RSpec.configure do |config|
   # Allows RSpec to persist some state between runs in order to support
   # the `--only-failures` and `--next-failure` CLI options. We recommend
   # you configure your source control system to ignore this file.
-  config.example_status_persistence_file_path = 'spec/examples.txt'
+  config.example_status_persistence_file_path = "spec/examples.txt"
 
   # This setting enables warnings. It's recommended, but in some cases may
   # be too noisy due to issues in dependencies.
@@ -38,7 +38,7 @@ RSpec.configure do |config|
   if config.files_to_run.one?
     # Use the documentation formatter for detailed output, unless a formatter
     # has already been configured (e.g. via a command-line flag).
-    config.default_formatter = 'doc'
+    config.default_formatter = "doc"
   end
 
   # Run specs in random order to surface order dependencies. If you find an

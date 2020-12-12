@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-require 'dry/matcher'
+require "dry/matcher"
