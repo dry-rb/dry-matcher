@@ -5,7 +5,7 @@ module Dry
     NonExhaustiveMatchError = Class.new(StandardError)
 
     # {Evaluator} is used in {Dry::Matcher#call Dry::Matcher#call} block to handle different {Case}s
-    class Evaluator < BasicObject
+    class Evaluator
       # @param [Object] result
       # @param [Hash{Symbol => Case}] cases
       def initialize(result, cases)
