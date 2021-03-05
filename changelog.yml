@@ -1,9 +1,7 @@
 ---
-- version: unreleased
-  summary: 
-  date: 
-  fixed: 
-  added: 
+- version: 0.9.0
+  summary:
+  date: 2021-03-05
   changed:
   - 'Matcher evaluator is now a standard `Object` descendant (see #32) (@solnic)'
 - version: 0.8.3
