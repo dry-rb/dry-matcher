@@ -1,21 +1,10 @@
 # frozen_string_literal: true
 
 require 'dry/matcher'
+require "dry/matcher/match"
 
 module Dry
   class Matcher
-    match = ::Proc.new do |value, patterns|
-      if patterns.empty?
-        value
-      elsif value.is_a?(::Array) && patterns.any? { |p| p === value[0] }
-        value
-      elsif patterns.any? { |p| p === value }
-        value
-      else
-        Undefined
-      end
-    end
-
     # Built-in {Matcher} ready to use with `Result` or `Try` monads from
     # [dry-monads](/gems/dry-monads) or any other compatible gems.
     #
@@ -85,7 +74,7 @@ module Dry
         result = result.to_result
 
         if result.success?
-          match.(result.value!, patterns)
+          Dry::Matcher::PatternMatch.(result.value!, patterns)
         else
           Undefined
         end
@@ -94,7 +83,7 @@ module Dry
         result = result.to_result
 
         if result.failure?
-          match.(result.failure, patterns)
+          Dry::Matcher::PatternMatch.(result.failure, patterns)
         else
           Undefined
         end
