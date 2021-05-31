@@ -30,5 +30,6 @@ Gem::Specification.new do |spec|
 
   # to update dependencies edit project.yml
   spec.add_runtime_dependency "dry-core", "~> 0.4", ">= 0.4.8"
+
   spec.add_development_dependency "rake"
 end
