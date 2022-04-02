@@ -11,7 +11,7 @@
 [![CI Status](https://github.com/dry-rb/dry-matcher/workflows/ci/badge.svg)][actions]
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f09a7d1745fd430d829a1f825357db88)][codacy]
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/f09a7d1745fd430d829a1f825357db88)][codacy]
-[![Inline docs](http://inch-ci.org/github/dry-rb/dry-matcher.svg?branch=master)][inchpages]
+[![Inline docs](http://inch-ci.org/github/dry-rb/dry-matcher.svg?branch=main)][inchpages]
 
 ## Links
 
