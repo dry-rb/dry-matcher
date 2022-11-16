@@ -15,7 +15,7 @@ module Dry
     # @return [Dry::Matcher]
     #
     # @example Usage with `dry-monads`
-    #   require 'dry/monads/maybe'
+    #   require 'dry/monads'
     #   require 'dry/matcher/maybe_matcher'
     #
     #   value = Dry::Monads::Maybe.new('there is a value!')
