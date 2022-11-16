@@ -12,7 +12,7 @@ group :test do
 end
 
 group :tools do
-  gem "yard"
   gem "byebug", platform: :mri
   gem "pry"
+  gem "yard"
 end

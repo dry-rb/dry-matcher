@@ -7,14 +7,14 @@ RSpec.describe Dry::Matcher do
     let(:success_case) do
       Dry::Matcher::Case.new(
         match: -> result { result.success? },
-        resolve: -> result { result.value! },
+        resolve: -> result { result.value! }
       )
     end
 
     let(:failure_case) do
       Dry::Matcher::Case.new(
         match: -> result { result.failure? },
-        resolve: -> result { result.failure },
+        resolve: -> result { result.failure }
       )
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Dry::Matcher do
       let(:success_case) do
         Dry::Matcher::Case.new(
           match: -> result { result.first == :ok },
-          resolve: -> result { result.last },
+          resolve: -> result { result.last }
         )
       end
 
@@ -70,7 +70,7 @@ RSpec.describe Dry::Matcher do
           match: -> result, failure_type {
             result.length == 3 && result[0] == :failure && result[1] == failure_type
           },
-          resolve: -> result { result.last },
+          resolve: -> result { result.last }
         )
       end
 

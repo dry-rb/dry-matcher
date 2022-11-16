@@ -10,7 +10,7 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
 
   before { Object.send(:remove_const, :Operation) if defined? Operation }
 
-  def self.set_up_expectations(matches)
+  def self.prepare_expectations(matches)
     matches.each do |value, matched|
       context "Matching #{value}" do
         let(:result) { value }
@@ -33,7 +33,7 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
       end
     end
 
-    set_up_expectations(
+    prepare_expectations(
       Success("a success") => "Matched success: a success",
       Failure("a failure") => "Matched failure: a failure",
       Try(StandardError) { "a success" } => "Matched success: a success",
@@ -53,7 +53,7 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
       end
     end
 
-    set_up_expectations(
+    prepare_expectations(
       Success(:a) => "Matched specific success: :a",
       Success(:b) => "Matched specific success: :b",
       Success("a success") => "Matched general success: a success",
@@ -69,14 +69,14 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
         on.success(/done/) { |s| "Matched string by pattern: #{s.inspect}" }
         on.success(String) { |s| "Matched string success: #{s.inspect}" }
         on.success(Integer) { |n| "Matched integer success: #{n}" }
-        on.success(Date, Time) { |t| "Matched date success: #{t.strftime('%Y-%m-%d')}" }
+        on.success(Date, Time) { |t| "Matched date success: #{t.strftime("%Y-%m-%d")}" }
         on.success { |v| "Matched general success: #{v}" }
         on.failure(Integer) { |n| "Matched integer failure: #{n}" }
         on.failure { |v| "Matched general failure: #{v}" }
       end
     end
 
-    set_up_expectations(
+    prepare_expectations(
       Success("nicely done") => 'Matched string by pattern: "nicely done"',
       Success("yay") => 'Matched string success: "yay"',
       Success(3) => "Matched integer success: 3",
@@ -101,7 +101,7 @@ RSpec.describe "Dry::Matcher::ResultMatcher" do
       end
     end
 
-    set_up_expectations(
+    prepare_expectations(
       Success([:created, 5]) => "Matched :created by code: 5",
       Success([:updated, 6, 7]) => "Matched :updated by code: 6, 7",
       Success([:deleted, 8, 9]) => "Matched :deleted by code: 8",

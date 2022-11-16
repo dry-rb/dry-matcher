@@ -10,15 +10,11 @@ module Dry
       # @param match [#call] callable used to test given pattern against value
       # @param resolve [#call] callable used to resolve value into a result
       def initialize(match: Undefined, resolve: DEFAULT_RESOLVE, &block)
-        if block
-          @match = block
-        else
-          @match = proc do |value, patterns|
-            if match.(value, *patterns)
-              resolve.(value)
-            else
-              Undefined
-            end
+        @match = block || proc do |value, patterns|
+          if match.(value, *patterns)
+            resolve.(value)
+          else
+            Undefined
           end
         end
       end

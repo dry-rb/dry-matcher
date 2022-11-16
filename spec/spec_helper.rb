@@ -8,7 +8,7 @@ begin
 rescue LoadError; end
 require "dry-matcher"
 
-Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].sort.each { |f| require f }
 
 RSpec.configure do |config|
   config.disable_monkey_patching!
