@@ -2,6 +2,8 @@
 - version: 0.10.0
   summary:
   date: 2022-11-16
+  added:
+    - "MaybeMatcher for matching against Maybe values from dry-monads (@gabfssilva) in #33"
   changed:
     - "This version is compatible with recently released dry-rb dependencies (@flash-gordon)"
 - version: 0.9.0
