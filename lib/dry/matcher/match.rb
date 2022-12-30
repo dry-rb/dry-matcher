@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
-require 'dry/matcher'
+require "dry/matcher"
 
+# rubocop:disable Style/CaseEquality
 module Dry
   class Matcher
-    PatternMatch = ::Proc.new do |value, patterns|
+    PatternMatch = proc do |value, patterns|
       if patterns.empty?
         value
+        # rubocop:disable Lint/DuplicateBranch
       elsif value.is_a?(::Array) && patterns.any? { |p| p === value[0] }
         value
       elsif patterns.any? { |p| p === value }
+        # rubocop:enable Lint/DuplicateBranch
         value
       else
         Undefined
@@ -17,3 +20,4 @@ module Dry
     end
   end
 end
+# rubocop:enable Style/CaseEquality

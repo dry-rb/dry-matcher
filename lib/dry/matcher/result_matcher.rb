@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'dry/matcher'
+require "dry/matcher"
 require "dry/matcher/match"
 
 module Dry
@@ -19,7 +19,7 @@ module Dry
     # @return [Dry::Matcher]
     #
     # @example Usage with `dry-monads`
-    #   require 'dry/monads/result'
+    #   require 'dry/monads'
     #   require 'dry/matcher/result_matcher'
     #
     #   value = Dry::Monads::Result::Success.new('success!')

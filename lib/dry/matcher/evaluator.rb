@@ -61,7 +61,8 @@ module Dry
 
       def ensure_exhaustive_match
         if @unhandled_cases.any?
-          ::Kernel.raise NonExhaustiveMatchError, "cases +#{@unhandled_cases.join(', ')}+ not handled"
+          ::Kernel.raise NonExhaustiveMatchError,
+                         "cases +#{@unhandled_cases.join(", ")}+ not handled"
         end
       end
     end

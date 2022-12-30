@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require "dry/monads/result"
-require "dry/monads/do"
+require "dry/monads"
 require "dry/matcher/result_matcher"
 
 RSpec.describe "Integration with dry-monads Do notation" do

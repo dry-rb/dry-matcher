@@ -7,7 +7,7 @@ name: dry-matcher
 dry-matcher provides a ready-to-use `MaybeMatcher` for working with `Maybe` from [dry-monads](/gems/dry-monads) or any other compatible gems.
 
 ```ruby
-require "dry/monads/maybe"
+require "dry/monads"
 require "dry/matcher/maybe_matcher"
 
 value = Dry::Monads::Maybe("success!")

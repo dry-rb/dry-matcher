@@ -10,7 +10,7 @@ RSpec.describe "Dry::Matcher::MaybeMatcher" do
 
   before { Object.send(:remove_const, :Operation) if defined? Operation }
 
-  def self.set_up_expectations(matches)
+  def self.prepare_expectations(matches)
     matches.each do |value, matched|
       context "Matching #{value}" do
         let(:result) { value }
@@ -33,9 +33,9 @@ RSpec.describe "Dry::Matcher::MaybeMatcher" do
       end
     end
 
-    set_up_expectations(
+    prepare_expectations(
       Some("a success") => "Matched some: a success",
-      None() => "Matched none",
+      None() => "Matched none"
     )
   end
 
@@ -49,11 +49,11 @@ RSpec.describe "Dry::Matcher::MaybeMatcher" do
       end
     end
 
-    set_up_expectations(
+    prepare_expectations(
       Some(:a) => "Matched specific success: :a",
       Some(:b) => "Matched specific success: :b",
       Some("a success") => "Matched general success: a success",
-      None() => "Matched none",
+      None() => "Matched none"
     )
   end
 
@@ -63,13 +63,13 @@ RSpec.describe "Dry::Matcher::MaybeMatcher" do
         on.some(/done/) { |s| "Matched string by pattern: #{s.inspect}" }
         on.some(String) { |s| "Matched string success: #{s.inspect}" }
         on.some(Integer) { |n| "Matched integer success: #{n}" }
-        on.some(Date, Time) { |t| "Matched date success: #{t.strftime('%Y-%m-%d')}" }
+        on.some(Date, Time) { |t| "Matched date success: #{t.strftime("%Y-%m-%d")}" }
         on.some { |v| "Matched general success: #{v}" }
         on.none { "Matched none" }
       end
     end
 
-    set_up_expectations(
+    prepare_expectations(
       Some("nicely done") => 'Matched string by pattern: "nicely done"',
       Some("yay") => 'Matched string success: "yay"',
       Some(3) => "Matched integer success: 3",
@@ -92,7 +92,7 @@ RSpec.describe "Dry::Matcher::MaybeMatcher" do
       end
     end
 
-    set_up_expectations(
+    prepare_expectations(
       Some([:created, 5]) => "Matched :created by code: 5",
       Some([:updated, 6, 7]) => "Matched :updated by code: 6, 7",
       Some([:deleted, 8, 9]) => "Matched :deleted by code: 8",

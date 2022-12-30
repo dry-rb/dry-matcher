@@ -7,7 +7,7 @@ name: dry-matcher
 dry-matcher provides a ready-to-use `ResultMatcher` for working with `Result` or `Try` monads from [dry-monads](/gems/dry-monads) or any other compatible gems.
 
 ```ruby
-require "dry/monads/result"
+require "dry/monads"
 require "dry/matcher/result_matcher"
 
 value = Dry::Monads::Success("success!")
