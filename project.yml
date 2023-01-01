@@ -1,5 +1,4 @@
 name: dry-matcher
-codacy_id: f09a7d1745fd430d829a1f825357db88
 gemspec:
   authors: ["Tim Riley", "Nikita Shilnikov"]
   email: ["tim@icelab.com.au", "fg@flashgordon.ru"]
