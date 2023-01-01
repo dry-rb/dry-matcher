@@ -26,10 +26,9 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"]   = "https://github.com/dry-rb/dry-matcher"
   spec.metadata["bug_tracker_uri"]   = "https://github.com/dry-rb/dry-matcher/issues"
 
-  spec.required_ruby_version = ">= 3.0.0"
+  spec.required_ruby_version = ">= 2.7.0"
 
   # to update dependencies edit project.yml
-  spec.add_runtime_dependency "dry-core", "~> 1.0"
-
+  spec.add_runtime_dependency "dry-core", "~> 1.0", "< 2"
   spec.add_development_dependency "rake"
 end
