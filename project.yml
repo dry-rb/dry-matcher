@@ -1,8 +1,14 @@
 name: dry-matcher
+rubies:
+  - 2.7
+  - 3.0
+  - 3.1
+  - 3.2
 gemspec:
   authors: ["Tim Riley", "Nikita Shilnikov"]
   email: ["tim@icelab.com.au", "fg@flashgordon.ru"]
   summary: "Flexible, expressive pattern matching for Ruby"
+  required_ruby_version: "2.7"
   development_dependencies:
     - rake
   runtime_dependencies:
