@@ -1,13 +1,13 @@
 ---
-- version: unreleased
-  summary: 
-  date: 
-  fixed: 
-  added: 
+- version: 1.0.0
+  summary:
+  date: 2023-01-01
+  fixed:
+  added:
   changed:
   - 'Update dry-core dependency (via #34) (@pnomolos)'
 - version: 0.10.0
-  summary: 
+  summary:
   date: 2022-11-16
   added:
   - 'MaybeMatcher for matching against Maybe values from dry-monads (@gabfssilva)
@@ -15,7 +15,7 @@
   changed:
   - This version is compatible with recently released dry-rb dependencies (@flash-gordon)
 - version: 0.9.0
-  summary: 
+  summary:
   date: 2021-03-05
   changed:
   - 'Matcher evaluator is now a standard `Object` descendant (see #32) (@solnic)'
