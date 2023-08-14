@@ -2,7 +2,7 @@
 [gem]: https://rubygems.org/gems/dry-matcher
 [actions]: https://github.com/dry-rb/dry-matcher/actions
 
-# dry-matcher [![Gem Version](https://badge.fury.io/rb/dry-matcher.svg)][gem] [![CI Status](https://github.com/dry-rb/dry-matcher/workflows/ci/badge.svg)][actions]
+# dry-matcher [![Gem Version](https://badge.fury.io/rb/dry-matcher.svg)][gem] [![CI Status](https://github.com/dry-rb/dry-matcher/workflows/CI/badge.svg)][actions]
 
 ## Links
 
