@@ -1,23 +1,17 @@
-<!--- this file is synced from dry-rb/template-gem project -->
+<!--- This file is synced from hanakai-rb/repo-sync -->
 
-[gem]: https://rubygems.org/gems/dry-matcher
+[rubygem]: https://rubygems.org/gems/dry-matcher
 [actions]: https://github.com/dry-rb/dry-matcher/actions
 
-# dry-matcher [![Gem Version](https://badge.fury.io/rb/dry-matcher.svg)][gem] [![CI Status](https://github.com/dry-rb/dry-matcher/workflows/CI/badge.svg)][actions]
+# dry-matcher [![Gem Version](https://badge.fury.io/rb/dry-matcher.svg)][rubygem] [![CI Status](https://github.com/dry-rb/dry-matcher/workflows/CI/badge.svg)][actions]
 
 ## Links
 
-* [User documentation](https://dry-rb.org/gems/dry-matcher)
-* [API documentation](http://rubydoc.info/gems/dry-matcher)
-* [Forum](https://discourse.dry-rb.org)
-
-## Supported Ruby versions
-
-This library officially supports the following Ruby versions:
-
-* MRI `>= 2.7.0`
-* jruby `>= 9.4` (not tested on CI)
+- [User documentation](<no value>)
+- [API documentation](http://rubydoc.info/gems/dry-matcher)
+- [Forum](https://discourse.dry-rb.org)
 
 ## License
 
 See `LICENSE` file.
+
