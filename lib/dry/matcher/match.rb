@@ -8,7 +8,6 @@ module Dry
     PatternMatch = proc do |value, patterns|
       if patterns.empty?
         value
-        # rubocop:disable Lint/DuplicateBranch
       elsif value.is_a?(::Array) && patterns.any? { |p| p === value[0] }
         value
       elsif patterns.any? { |p| p === value }
