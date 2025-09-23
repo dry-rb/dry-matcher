@@ -7,7 +7,7 @@
 
 ## Links
 
-- [User documentation](<no value>)
+- [User documentation](https://dry-rb.org/gems/dry-matcher)
 - [API documentation](http://rubydoc.info/gems/dry-matcher)
 - [Forum](https://discourse.dry-rb.org)
 
