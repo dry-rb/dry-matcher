@@ -5,7 +5,8 @@ require_relative "support/warnings"
 
 begin
   require "byebug"
-rescue LoadError; end
+rescue LoadError;
+end
 require "dry-matcher"
 
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
